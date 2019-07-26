@@ -1,6 +1,5 @@
 package org.cp;
 
-import com.sun.corba.se.impl.ior.OldJIDLObjectKeyTemplate;
 
 /**
  * notifyAll(), wait()要写在synchronized里面
@@ -17,42 +16,14 @@ public class Print100By2Thread {
         Thread t1 = new Thread(){
             @Override
             public void run() {
-                while (true) {
-                    synchronized (o) {
-                        if (i>100) {
-                            break;
-                        }
-                        System.out.println(Thread.currentThread().getName() + " : " + i);
-                        i++;
-                        o.notifyAll();
-                        try {
-                            o.wait();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
+                myRun();
             }
         };
 
         Thread t2 = new Thread(){
             @Override
             public void run() {
-                while (true) {
-                    synchronized (o) {
-                        if (i>100) {
-                            break;
-                        }
-                        System.out.println(Thread.currentThread().getName() + " : " + i);
-                        i++;
-                        o.notifyAll();
-                        try {
-                            o.wait();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
+                myRun();
             }
         };
 
@@ -60,5 +31,27 @@ public class Print100By2Thread {
         t2.setName("线程2");
         t1.start();
         t2.start();
+    }
+
+    /**
+     * 提取公共方法
+     */
+    static void myRun() {
+        while (true) {
+            synchronized (o) {
+                if (i>100) {
+                    o.notifyAll();//这里唤起一下，结束所有线程
+                    break;
+                }
+                System.out.println(Thread.currentThread().getName() + " : " + i);
+                i++;
+                o.notifyAll();
+                try {
+                    o.wait();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 }
