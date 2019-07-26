@@ -12,7 +12,7 @@ public class SingletonLazy {
 
     public static SingletonLazy getInstance() {
         if (singletonLazy==null) {//高效判断，不用每次都进来锁里面，
-            synchronized (SingletonLazy.class) {
+            synchronized (SingletonLazy.class) {//lock it, for safe
                 if (singletonLazy==null) {
                     try {
                         Thread.sleep(100);//延迟看效果
