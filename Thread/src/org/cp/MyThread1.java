@@ -5,14 +5,11 @@ package org.cp;
  */
 public class MyThread1 implements Runnable {
 
-    public Integer ticket = 100;
+    Integer ticket = 100;
 
     @Override
     public void run() {
-        while (true) {
-            if (ticket < 0) {
-                break;
-            }
+        while (ticket >= 0) {
             sell();
         }
     }
@@ -34,15 +31,9 @@ class Test1 {
         Thread t2 = new Thread(t);
         Thread t3 = new Thread(t);
 
-        Runnable r = new Runnable() {
-            @Override
-            public void run() {
-                while (true) {
-                    if (t.ticket < 0) {
-                        break;
-                    }
-                    t.sell();
-                }
+        Runnable r = () -> {
+            while (t.ticket >= 0) {
+                t.sell();
             }
         };
         Thread t4 = new Thread(r);

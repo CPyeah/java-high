@@ -6,8 +6,8 @@ package org.cp;
  * create by CP on 2019/7/25 0025.
  */
 public class Window2_2 implements Runnable {
-    public static int ticket = 100;
-    public static Object o = new Object();
+    private static int ticket = 100;
+    private static Object o = new Object();
     @Override
     public void run() {
         while (true) {
@@ -21,7 +21,7 @@ public class Window2_2 implements Runnable {
 
     /**
      * 这里不用要声明静态
-     * @return
+     * @return boolean
      */
 //    private static synchronized boolean sell() {
     private synchronized boolean sell() {

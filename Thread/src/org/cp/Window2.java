@@ -6,7 +6,7 @@ package org.cp;
  * create by CP on 2019/7/25 0025.
  */
 public class Window2 implements Runnable {
-    public static int ticket = 100;
+    private static int ticket = 100;
     @Override
     public void run() {
         while (true) {

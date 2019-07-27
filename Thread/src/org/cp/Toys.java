@@ -4,7 +4,7 @@ package org.cp;
  * create by CP on 2019/7/24 0024.
  */
 public class Toys {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
 
         Runnable runnable = new Runnable() {
             int i = 1;

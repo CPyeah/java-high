@@ -16,24 +16,25 @@ public class BankSimpleTest {
 }
 class Account {
     private Double balance=0.0;//余额
-    public Double getBalance() {
+    Double getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
+    void setBalance(Double balance) {
         this.balance = balance;
     }
 
 }
 class Customer extends Thread{
 
-    Account account;
+    private final Account account;
 
-    public Customer(Account account) {
+    Customer(Account account) {
         this.account = account;
     }
 
-    public void deposit(Double amount) {
+
+    private void deposit(Double amount) {
         synchronized (account) {//锁定操作同步数据的代码块，让一次只能一个客户进来操作
             Double balance = account.getBalance();
             try {

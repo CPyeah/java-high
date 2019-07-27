@@ -9,23 +9,13 @@ package org.cp;
  */
 public class Print100By2Thread {
 
-    public static int i = 1;
-    public static Object o = new Object();
+    private static int i = 1;
+    private static final Object o = new Object();
 
     public static void main(String[] args) {
-        Thread t1 = new Thread(){
-            @Override
-            public void run() {
-                myRun();
-            }
-        };
+        Thread t1 = new Thread(() -> myRun());
 
-        Thread t2 = new Thread(){
-            @Override
-            public void run() {
-                myRun();
-            }
-        };
+        Thread t2 = new Thread(() -> myRun());
 
         t1.setName("线程1");
         t2.setName("线程2");
@@ -36,7 +26,7 @@ public class Print100By2Thread {
     /**
      * 提取公共方法
      */
-    static void myRun() {
+    private static void myRun() {
         while (true) {
             synchronized (o) {
                 if (i>100) {

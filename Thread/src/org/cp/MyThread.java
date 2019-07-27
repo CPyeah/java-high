@@ -5,18 +5,16 @@ package org.cp;
  */
 public class MyThread extends Thread {
 
-    public static Integer ticket = 100;
+    static Integer ticket = 100;
 
     @Override
     public void run() {
-        while (true) {
-            synchronized (this.ticket) {
-                if (ticket < 0) {
-                    break;
-                }
-                System.out.println(getName() + ": " + ticket);
-                ticket--;
+        while (true) synchronized (ticket) {
+            if (ticket < 0) {
+                break;
             }
+            System.out.println(getName() + ": " + ticket);
+            ticket--;
         }
     }
 }

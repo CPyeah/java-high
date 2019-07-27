@@ -6,8 +6,8 @@ package org.cp;
  * create by CP on 2019/7/25 0025.
  */
 public class Window1_2 extends Thread {
-    public static int ticket = 100;
-    public static Object o = new Object();
+    private static int ticket = 100;
+    private static Object o = new Object();
     @Override
     public void run() {
         while (true) {
@@ -21,7 +21,7 @@ public class Window1_2 extends Thread {
 
     /**
      * 这里要声明静态，要不然锁不唯一
-     * @return
+     * @return boolean
      */
     private synchronized static boolean sell() {
         if (ticket>0) {

@@ -18,7 +18,7 @@ public class MyThread2 extends Thread{
         System.out.println("醒了！");
     }
 
-    public MyThread2(String whoAmI, int delay) {
+    MyThread2(String whoAmI, int delay) {
         this.whoAmI = whoAmI;
         this.delay = delay;
     }

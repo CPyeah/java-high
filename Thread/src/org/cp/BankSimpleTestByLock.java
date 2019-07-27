@@ -23,32 +23,29 @@ class AccountB {
 
     private Lock lock = new ReentrantLock();//锁
 
-    public Double getBalance() {
+    Double getBalance() {
         return balance;
     }
 
-    public void setBalance(Double balance) {
+    void setBalance(Double balance) {
         this.balance = balance;
     }
 
-    public Lock getLock() {
+    Lock getLock() {
         return lock;
     }
 
-    public void setLock(Lock lock) {
-        this.lock = lock;
-    }
 }
 
 class CustomerB extends Thread{
 
-    AccountB account;
+    private AccountB account;
 
-    public CustomerB(AccountB account) {
+    CustomerB(AccountB account) {
         this.account = account;
     }
 
-    public void deposit(Double amount) {
+    private void deposit(Double amount) {
         try {
             account.getLock().lock();
             Double balance = account.getBalance();

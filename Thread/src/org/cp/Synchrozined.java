@@ -52,30 +52,10 @@ public class Synchrozined {
 class Test2{
     public static void main(String[] args) {
         Synchrozined synchrozined = new Synchrozined();
-        new Thread(){
-            @Override
-            public void run() {
-                synchrozined.m3();
-            }
-        }.start();
-        new Thread(){
-            @Override
-            public void run() {
-                synchrozined.m1();
-            }
-        }.start();
-        new Thread(){
-            @Override
-            public void run() {
-                synchrozined.m2();
-            }
-        }.start();
+        new Thread(() -> synchrozined.m3()).start();
+        new Thread(() -> synchrozined.m1()).start();
+        new Thread(() -> synchrozined.m2()).start();
 
-        new Thread(){
-            @Override
-            public void run() {
-                synchrozined.m4();
-            }
-        }.start();
+        new Thread(() -> synchrozined.m4()).start();
     }
 }

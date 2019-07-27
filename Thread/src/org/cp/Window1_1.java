@@ -6,7 +6,7 @@ package org.cp;
  * create by CP on 2019/7/25 0025.
  */
 public class Window1_1 extends Thread {
-    public static int ticket = 100;
+    private static int ticket = 100;
     public static Object o = new Object();
     @Override
     public void run() {
