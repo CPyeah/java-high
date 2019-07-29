@@ -10,6 +10,8 @@
  */
 package org.cp;
 
+import java.util.LinkedList;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈生产者消费者问题 基础写法〉
@@ -24,10 +26,13 @@ public class ProductTest {
         Producer producer = new Producer(clerk);
         producer.setName("生产者 1 ");
         Consumer consumer = new Consumer(clerk);
-        consumer.setName("消费者 1");
+        consumer.setName("消费者 1 ");
+        Consumer consumer2 = new Consumer(clerk);
+        consumer2.setName("消费者 2 ");
 
         producer.start();
         consumer.start();
+//        consumer2.start();
     }
 }
 
@@ -38,6 +43,37 @@ class Clerk{
     //剩余商品数量
     Integer productCount = 0;
 
+    Integer maxCount = 5;
+    private LinkedList<Object> list = new LinkedList<>();
+
+    public  void produce() throws InterruptedException {
+        synchronized (list) {
+            while (productCount>=maxCount) {
+                System.out.println(Thread.currentThread().getName()+"等待...");
+                list.wait();
+            }
+            Long time = Long.valueOf(productCount * 500);
+            Thread.sleep(time);
+            productCount++;
+
+            System.out.println(Thread.currentThread().getName()+"生产第 "+productCount+" 个产品，耗时： "+time);
+            list.notifyAll();
+        }
+    }
+
+    public  void consume() throws InterruptedException {
+        synchronized (list) {
+            while (productCount<1) {
+                System.out.println(Thread.currentThread().getName()+"等待...");
+                list.wait();
+            }
+            Long time = Long.valueOf((maxCount-productCount) * 500);
+            Thread.sleep(time);
+            System.out.println(Thread.currentThread().getName()+"消费第 "+productCount+" 个产品，耗时： "+time);
+            productCount--;
+            list.notifyAll();
+        }
+    }
 }
 
 /**
@@ -54,7 +90,15 @@ class Producer extends Thread{
 
     @Override
     public void run() {
-        //生产产品
+        while (true) {
+            System.out.println("shengchan");
+            //生产产品
+            try {
+                clerk.produce();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
 
@@ -71,7 +115,15 @@ class Consumer extends Thread {
 
     @Override
     public void run() {
-        //消费产品
+        while (true) {
+            System.out.println("xiaofei");
+            //消费产品
+            try {
+                clerk.consume();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
