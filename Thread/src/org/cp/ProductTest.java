@@ -43,34 +43,30 @@ class Clerk{
     //剩余商品数量
     Integer productCount = 0;
 
-    Integer maxCount = 100;
+    Integer maxCount = 10;
     private LinkedList<Object> list = new LinkedList<>();
 
-    public  void produce() throws InterruptedException {
-        synchronized (list) {
-            while (productCount>=maxCount) {
-                System.out.println(Thread.currentThread().getName()+"等待...");
-                list.wait();
-            }
-            Thread.sleep(500);
-            productCount++;
-
-            System.out.println(Thread.currentThread().getName()+"生产第 "+productCount+" 个产品");
-            list.notifyAll();
+    public synchronized void produce() throws InterruptedException {
+        while (productCount>=maxCount) {
+            System.out.println(Thread.currentThread().getName()+"等待...");
+            wait();
         }
+
+        productCount++;
+
+        System.out.println(Thread.currentThread().getName()+"生产第 "+productCount+" 个产品");
+        notifyAll();
     }
 
-    public  void consume() throws InterruptedException {
-        synchronized (list) {
-            while (productCount<1) {
-                System.out.println(Thread.currentThread().getName()+"等待...");
-                list.wait();
-            }
-            Thread.sleep(500);
-            System.out.println(Thread.currentThread().getName()+"消费第 "+productCount+" 个产品");
-            productCount--;
-            list.notifyAll();
+    public synchronized void consume() throws InterruptedException {
+        while (productCount<1) {
+            System.out.println(Thread.currentThread().getName()+"等待...");
+            wait();
         }
+
+        System.out.println(Thread.currentThread().getName()+"消费第 "+productCount+" 个产品");
+        productCount--;
+        notifyAll();
     }
 }
 
@@ -89,9 +85,9 @@ class Producer extends Thread{
     @Override
     public void run() {
         while (true) {
-            System.out.println("shengchan");
             //生产产品
             try {
+                Thread.sleep(300);
                 clerk.produce();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -114,9 +110,9 @@ class Consumer extends Thread {
     @Override
     public void run() {
         while (true) {
-            System.out.println("xiaofei");
             //消费产品
             try {
+                Thread.sleep(500);
                 clerk.consume();
             } catch (InterruptedException e) {
                 e.printStackTrace();
