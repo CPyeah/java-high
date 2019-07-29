@@ -43,7 +43,7 @@ class Clerk{
     //剩余商品数量
     Integer productCount = 0;
 
-    Integer maxCount = 5;
+    Integer maxCount = 100;
     private LinkedList<Object> list = new LinkedList<>();
 
     public  void produce() throws InterruptedException {
@@ -52,11 +52,10 @@ class Clerk{
                 System.out.println(Thread.currentThread().getName()+"等待...");
                 list.wait();
             }
-            Long time = Long.valueOf(productCount * 500);
-            Thread.sleep(time);
+            Thread.sleep(500);
             productCount++;
 
-            System.out.println(Thread.currentThread().getName()+"生产第 "+productCount+" 个产品，耗时： "+time);
+            System.out.println(Thread.currentThread().getName()+"生产第 "+productCount+" 个产品");
             list.notifyAll();
         }
     }
@@ -67,9 +66,8 @@ class Clerk{
                 System.out.println(Thread.currentThread().getName()+"等待...");
                 list.wait();
             }
-            Long time = Long.valueOf((maxCount-productCount) * 500);
-            Thread.sleep(time);
-            System.out.println(Thread.currentThread().getName()+"消费第 "+productCount+" 个产品，耗时： "+time);
+            Thread.sleep(500);
+            System.out.println(Thread.currentThread().getName()+"消费第 "+productCount+" 个产品");
             productCount--;
             list.notifyAll();
         }
