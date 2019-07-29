@@ -1,8 +1,6 @@
 package org.cp;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.FutureTask;
+import java.util.concurrent.*;
 
 /**
  * Callable初体验
@@ -14,8 +12,18 @@ public class CallableTest {
         FutureTask task = new FutureTask(cc);//封装Callable实现类
         Thread thread = new Thread(task);
         thread.start();
+
         Object o = task.get();//阻塞式获取
         System.out.println(o);
+
+        try {
+            Object o1 = task.get(1, TimeUnit.SECONDS);//阻塞式获取
+            System.out.println(o1);
+        } catch (TimeoutException e) {
+            System.out.println("1 秒后，没取到结果");
+            e.printStackTrace();
+        }
+
     }
 }
 
