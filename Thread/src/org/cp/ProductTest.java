@@ -47,7 +47,7 @@ class Clerk{
     private LinkedList<Object> list = new LinkedList<>();
 
     public synchronized void produce() throws InterruptedException {
-        while (productCount>=maxCount) {
+        while (productCount>=maxCount) {//尽量用while来代替if
             System.out.println(Thread.currentThread().getName()+"等待...");
             wait();
         }
@@ -55,7 +55,7 @@ class Clerk{
         productCount++;
 
         System.out.println(Thread.currentThread().getName()+"生产第 "+productCount+" 个产品");
-        notifyAll();
+        notifyAll();//尽量使用notifyAll()
     }
 
     public synchronized void consume() throws InterruptedException {
@@ -87,7 +87,12 @@ class Producer extends Thread{
         while (true) {
             //生产产品
             try {
-                Thread.sleep(300);
+                Long time;
+                synchronized (this) {
+                    time = (Long.valueOf(clerk.maxCount)-Long.valueOf(clerk.productCount))/Long.valueOf(clerk.maxCount)*4000;
+                    System.out.println(time);
+                }
+                Thread.sleep(time);
                 clerk.produce();
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -112,7 +117,11 @@ class Consumer extends Thread {
         while (true) {
             //消费产品
             try {
-                Thread.sleep(500);
+                Long time;
+                synchronized (this) {
+                    time = Long.valueOf(clerk.productCount)/Long.valueOf(clerk.maxCount)*4000;
+                }
+                Thread.sleep(time);//sleep应该写在外面，synchronized里在允许的情况下，代码越少越好
                 clerk.consume();
             } catch (InterruptedException e) {
                 e.printStackTrace();
