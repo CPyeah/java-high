@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/CommonClass/CommonClass.iml" filepath="$PROJECT_DIR$/CommonClass/CommonClass.iml" />
       <module fileurl="file://$PROJECT_DIR$/Thread/Thread.iml" filepath="$PROJECT_DIR$/Thread/Thread.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-quick.iml" filepath="$PROJECT_DIR$/spring-boot-quick.iml" />
     </modules>
