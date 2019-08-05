@@ -67,4 +67,25 @@ public class Practice {
         return new String(sb);
     }
 
+    /**
+     * 获取一个字符串在另一个字符串中出现的次数。
+     *       比如：获取“ ab”在 “abkkcadkabkebfkabkskab” 中出现的次数
+     */
+    @Test
+    public void findStringTest() {
+//        String ss = "ab";
+//        String ls = "abkkcadkabkebfkabkskab";
+        String ss = "aa";
+        String ls = "aaakkcadkaakebfkaakskaa";
+        int count = 0;
+        int i = 0;
+        while ((i =ls.indexOf(ss, i))>=0) {
+            count++;
+//            i++;//往后移一个
+            i += ss.length();//如果字符串不能重合，往后移ss的长度个
+        }
+        System.out.println(count);
+    }
+
+
 }
