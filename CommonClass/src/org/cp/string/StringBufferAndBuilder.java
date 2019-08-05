@@ -15,7 +15,7 @@ public class StringBufferAndBuilder {
     public void bufferTest() {
         StringBuffer sb = new StringBuffer("abc");
         System.out.println(sb.reverse());
-        StringBuffer stringBuffer = new StringBuffer(100);
+        StringBuffer stringBuffer = new StringBuffer(100);//初始化定义容量，默认预留16个字符
         stringBuffer.append(5)
                 .append('e')
                 .append(1.2)
