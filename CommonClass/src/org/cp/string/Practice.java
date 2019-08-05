@@ -2,6 +2,8 @@ package org.cp.string;
 
 import org.junit.Test;
 
+import java.util.Arrays;
+
 /**
  * String 相关 练习 实践
  * create by CP on 2019/8/5 0005.
@@ -133,13 +135,28 @@ public class Practice {
                     if (str1.contains(sub)) {
                         System.out.println(sub);
                         System.out.println(count);
-                        break outer;
+                        break outer;//跳出外层循环（j循环）
                     }
                 } else {
-                    break;
+                    break;//跳出 当前循环（i循环）
                 }
             }
         }
+    }
+
+    /**
+     * 对字符串中字符进行自然顺序排序
+     * 1字符串变成字符数组。
+     * 2对数组排序，择，冒泡，Arrays.sort();
+     * 3将排序后的数组变成字符串。
+     */
+    @Test
+    public void sortString() {
+        String s = "abcwerthelloyuiodef";
+        char[] chars = s.toCharArray();
+        Arrays.sort(chars);
+        String s1 = new String(chars);
+        System.out.println(s1);
     }
 
 
