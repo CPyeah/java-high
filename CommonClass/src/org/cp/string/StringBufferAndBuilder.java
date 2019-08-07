@@ -35,4 +35,41 @@ public class StringBufferAndBuilder {
                 .append("ff");
         System.out.println(stringBuilder);
     }
+
+    /**
+     * 设计代码，比较三者效率 从1加到20000
+     * 从高到低排列：StringBuilder > StringBuffer > String
+     */
+    @Test
+    public void efficiencyTest() {
+        String s1 = "";
+        StringBuffer s2 = new StringBuffer();
+        StringBuilder s3 = new StringBuilder();
+        long beginTime;
+        long endTime;
+
+        //String
+        beginTime = System.currentTimeMillis();
+        for (int i = 0; i < 20000; i++) {
+            s1 += String.valueOf(i);
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("String : " + (endTime-beginTime));
+
+        //StringBuffer
+        beginTime = System.currentTimeMillis();
+        for (int i = 0; i < 20000; i++) {
+            s2.append(String.valueOf(i));
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("StringBuffer : " + (endTime-beginTime));
+
+        //StringBuilder
+        beginTime = System.currentTimeMillis();
+        for (int i = 0; i < 20000; i++) {
+            s3.append(String.valueOf(i));
+        }
+        endTime = System.currentTimeMillis();
+        System.out.println("StringBuilder : " + (endTime-beginTime));
+    }
 }
