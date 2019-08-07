@@ -39,6 +39,7 @@ public class StringBufferAndBuilder {
     /**
      * 设计代码，比较三者效率 从1加到20000
      * 从高到低排列：StringBuilder > StringBuffer > String
+     * 18795462397
      */
     @Test
     public void efficiencyTest() {
