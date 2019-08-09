@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.GregorianCalendar;
 
 /**
@@ -50,6 +51,23 @@ public class CalendarTest {
         System.out.println("-----------------------------------");
         c.set(2020, 12, 15, 18, 32, 59);
         System.out.println(simpleDateFormat.format(c.getTime()));//2021-01-15 18:32:59 之前add的偏移量会一直存在，而且新new的Calendar也不行
+    }
+
+    /**
+     * Calendar 日历对象 月份、星期 偏移量
+     */
+    @Test
+    public void calendarOffsetTest() {
+        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Calendar calendar = Calendar.getInstance();
+        // 这才是真正的 2018-08-09（星期五）
+        calendar.set(2019, 7, 9);// 月份的计算是从0 开始 0-一月 1-二月 ... 11-十二月 12-第二年一月
+        Date time = calendar.getTime();
+        System.out.println(time);
+        System.out.println(simpleDateFormat.format(time));
+        //星期天 1；星期一 2；...... 星期六 7
+        System.out.println(calendar.get(Calendar.DAY_OF_WEEK));//6 （星期五）
+
     }
 
 }
