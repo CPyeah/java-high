@@ -21,9 +21,10 @@ public class WorkDay {
 
     private int initSort = 5;// 初始化 工作 序列号
 
-    private String target = "2019-08-06";// 目标日期
+    private String target = "2019-12-10";// 目标日期
 
-    private int showNextDay = 30;//显示目标及接下来的7天的工作安排
+    private int showNextDay = 10;//显示目标及接下来的7天的工作安排
+
     /**
      *  2019-08-07  为 休1
      *  2019-08-09 是什么班？
@@ -35,6 +36,11 @@ public class WorkDay {
         getTargetWorkDayName(workMap, durationDays);
     }
 
+    /**
+     * 获取目标日期的工作安排情况
+     * @param workMap
+     * @param days
+     */
     private void getTargetWorkDayName(Map workMap, int days) {
         String initWorkName = (String) workMap.get(initSort);
         System.out.println("初始情况是 " + init + "是 " + initWorkName);
@@ -46,6 +52,11 @@ public class WorkDay {
         showNextDays(workMap, targetSort);
     }
 
+    /**
+     * 计算展示接下来的几天的工作安排情况
+     * @param workMap
+     * @param targetSort
+     */
     private void showNextDays(Map workMap, int targetSort) {
         System.out.println("    接下来的 "+showNextDay+" 天的情况是： ");
         LocalDate targetDate = LocalDate.parse(target);
@@ -60,8 +71,11 @@ public class WorkDay {
         }
     }
 
+    /**
+     * 获取间隔天数
+     * @return
+     */
     private int getDurationDays() {
-
         DateTimeFormatter df = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         LocalDateTime initDate = LocalDateTime.parse(init+" 09:00", df);
         LocalDateTime targetDate = LocalDateTime.parse(target+" 09:00", df);
@@ -70,6 +84,10 @@ public class WorkDay {
         return days;
     }
 
+    /**
+     * 初始化 排班名称及索引
+     * @return
+     */
     private Map getWorkMap() {
         Map workMap = new HashMap();
         workMap.put(1, "白1");
