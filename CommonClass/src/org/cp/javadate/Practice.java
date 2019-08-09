@@ -5,6 +5,9 @@ import org.junit.Test;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.Date;
 
 /**
@@ -45,6 +48,25 @@ public class Practice {
         Long days = interval / (1000 * 60 * 60 * 24) + 1;
         System.out.println("间隔天数： " + days);
         int i = days.intValue() % 5;
+        String action = i <= 3 ? "打渔" : "晒网";
+        System.out.println("这是第 " + i + " 天， 所以在" + action);//4 第四天，所以在晒网
+    }
+
+    /**
+     * 三天打鱼两天晒网 新版 LocalDate 写法
+     *         String begin = "1990-01-01";
+     *         String end = "2020-09-08";
+     */
+    @Test
+    public void test2_1() {
+        LocalDate begin = LocalDate.of(1990, 1, 1);
+        LocalDate end = LocalDate.of(2020, 9, 8);
+        Period between = Period.between(begin, end);
+        //The Epoch Day count is a simple incrementing count of days where day 0 is 1970-01-01 (ISO). This definition is the same for all chronologies, enabling conversion.
+        System.out.println(begin.toEpochDay());
+        int days = (int) (end.toEpochDay() - begin.toEpochDay()) + 1;
+        System.out.println("间隔天数： " + days);
+        int i = days % 5;
         String action = i <= 3 ? "打渔" : "晒网";
         System.out.println("这是第 " + i + " 天， 所以在" + action);//4 第四天，所以在晒网
     }
