@@ -2,6 +2,7 @@ package org.cp.javadate;
 
 import org.junit.Test;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -34,11 +35,25 @@ public class Jdk8LocalDateTimeTest {
         System.out.println(localDate4);//2021-03-10
 
     }
-    
+
+    /**
+     * 常用LocalDateTime 类
+     * 包含 日期和时间
+     */
     @Test
     public void LocalDateTimeTest() {
 
-        LocalDateTime.of(2020, 12, 15, 9, 30, 5);
+        LocalDateTime now = LocalDateTime.now();
+        System.out.println(now);
+
+        LocalDateTime dateTime = LocalDateTime.of(2020, 12, 15, 9, 30, 5);
+        System.out.println(dateTime);
+
+        //获取 12 月有多少天
+        LocalDateTime begin = dateTime.withDayOfMonth(1);
+        LocalDateTime end = begin.plusMonths(1);
+        Duration between = Duration.between(begin, end);
+        System.out.println(between.toDays());
 
     }
 
