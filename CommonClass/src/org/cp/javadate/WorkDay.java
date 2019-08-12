@@ -21,7 +21,7 @@ public class WorkDay {
 
     private int initSort = 5;// 初始化 工作 序列号
 
-    private String target = "2019-12-10";// 目标日期
+    private String target = "2019-08-12";// 目标日期
 
     private int showNextDay = 10;//显示目标及接下来的7天的工作安排
 
@@ -48,7 +48,8 @@ public class WorkDay {
         int mod = days % loop;
         int targetSort = initSort + mod;
         targetSort = targetSort % loop;
-        System.out.println("那么 " + target + "是 " + workMap.get(targetSort));
+        targetSort = targetSort == 0 ? loop : targetSort;
+        System.out.println("那么 " + target +"（"+LocalDate.parse(target).getDayOfWeek()+ "）是 " + workMap.get(targetSort));
         showNextDays(workMap, targetSort);
     }
 
@@ -67,7 +68,7 @@ public class WorkDay {
             targetSort++;
             int index = targetSort % loop == 0 ? loop :targetSort % loop;
             String workName = (String) workMap.get(index);
-            System.out.println("    " + targetDate + "是 "+ workName);
+            System.out.println("    " + targetDate +"（"+targetDate.getDayOfWeek()+ "）是 "+ workName);
         }
     }
 
