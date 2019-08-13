@@ -12,7 +12,9 @@ package org.cp.others;
 
 import org.junit.Test;
 
+import java.nio.charset.StandardCharsets;
 import java.time.*;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -54,6 +56,14 @@ public class Practice04 {
      */
     @Test
     public void test2() {
+
+        String name = "程鹏";
+        // 字符串编码
+        byte[] bytes = name.getBytes(StandardCharsets.UTF_8);
+        System.out.println(Arrays.toString(bytes));
+        //解码
+        String s = new String(bytes);
+        System.out.println(s);
 
     }
 
