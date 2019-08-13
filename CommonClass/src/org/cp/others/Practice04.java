@@ -12,6 +12,10 @@ package org.cp.others;
 
 import org.junit.Test;
 
+import java.time.*;
+import java.util.Calendar;
+import java.util.Date;
+
 /**
  * 〈一句话功能简述〉<br> 
  * 〈第四天习题（时间、比较器）〉
@@ -28,7 +32,21 @@ public class Practice04 {
      */
     @Test
     public void test1() {
+        String s = "2017-08-16";
+        LocalDate localDate = LocalDate.parse(s);
+        System.out.println(localDate);
+        LocalDateTime localDateTime = localDate.atStartOfDay();
+        ZoneId zoneId = ZoneId.systemDefault();
+        ZonedDateTime zonedDateTime = localDateTime.atZone(zoneId);
+        Instant instant = zonedDateTime.toInstant();
+        System.out.println(instant);
+        Date d = Date.from(instant);
+        java.sql.Date sqlDate = new java.sql.Date(d.getTime());
+        System.out.println(sqlDate);
 
+        // 这种方式很简单
+        java.sql.Date date = java.sql.Date.valueOf(localDate);
+        System.out.println(date);
     }
 
     /**
@@ -60,7 +78,23 @@ public class Practice04 {
      */
     @Test
     public void test5() {
+        Date date = new Date();
+        java.sql.Date sqlDate = new java.sql.Date(System.currentTimeMillis());
+        Calendar calendar = Calendar.getInstance();
 
+        LocalDate localDate = LocalDate.now();
+        LocalTime localTime = LocalTime.now();
+        LocalDateTime localDateTime = LocalDateTime.now();
+
+        Instant instant = Instant.now();
+
+        System.out.println(date);
+        System.out.println(sqlDate);
+        System.out.println(calendar);
+        System.out.println(localDate);
+        System.out.println(localTime);
+        System.out.println(localDateTime);
+        System.out.println(instant);
     }
 
 
