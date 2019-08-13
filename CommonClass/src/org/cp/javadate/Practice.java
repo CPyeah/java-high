@@ -5,9 +5,7 @@ import org.junit.Test;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.Duration;
-import java.time.LocalDate;
-import java.time.Period;
+import java.time.*;
 import java.util.Date;
 
 /**
@@ -69,6 +67,33 @@ public class Practice {
         int i = days % 5;
         String action = i <= 3 ? "打渔" : "晒网";
         System.out.println("这是第 " + i + " 天， 所以在" + action);//4 第四天，所以在晒网
+    }
+
+    /**
+     * java.util.Date 与 LocalDateTime 之间的相互转换
+     */
+    @Test
+    public void dateConvert() {
+        //LocalDate -> java.util.Date
+        LocalDate localDate = LocalDate.of(2019, 12, 15);
+        LocalDateTime localDateTime = localDate.atStartOfDay();
+        Instant instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant();
+        Date date = Date.from(instant);
+        System.out.println(date);
+
+        // LocalDateTime -> java.util.Date
+        LocalDateTime now = LocalDateTime.now();//从 LocalDateTime
+        ZoneId zoneId = ZoneId.systemDefault();// 确定时区 ZoneId
+        Instant instant1 = now.atZone(zoneId).toInstant();// 转成 Instant
+        Date date1 = Date.from(instant1);// 再转成 Date
+        System.out.println(date1);
+
+        // java.util.Date -> LocalDateTime
+        Date date2 = new Date();
+        Instant instant2 = date2.toInstant();
+        ZoneId zoneId1 = ZoneId.systemDefault();// 时区 必不可少
+        LocalDateTime localDateTime1 = LocalDateTime.ofInstant(instant2, zoneId1);
+        System.out.println(localDateTime1);
     }
 
 }
