@@ -91,6 +91,8 @@ public class Practice04 {
         Date date = new Date();
         java.sql.Date sqlDate = new java.sql.Date(System.currentTimeMillis());
         Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);// Date转Calendar
+        Date time = calendar.getTime();// Calendar 转 Date
 
         LocalDate localDate = LocalDate.now();
         LocalTime localTime = LocalTime.now();
