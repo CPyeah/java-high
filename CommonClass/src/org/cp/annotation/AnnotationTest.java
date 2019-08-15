@@ -2,8 +2,10 @@ package org.cp.annotation;
 
 import org.junit.Test;
 
+import java.lang.annotation.Annotation;
 import java.lang.annotation.Inherited;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -19,6 +21,15 @@ public class AnnotationTest {
         @SuppressWarnings("unused")
         List list = new ArrayList();
         System.out.println(list);
+
+        Class<AnnotationTest> annotationTestClass = AnnotationTest.class;
+        Annotation[] annotations = annotationTestClass.getAnnotations();
+        System.out.println(Arrays.toString(annotations));
+
+        Class<Sub> subClass = Sub.class;
+        //@CP 因为有 @Inherited， 所以子类就有@CP的注解
+        Annotation[] subs = subClass.getAnnotations();
+        System.out.println(Arrays.toString(subs));
     }
 
     /**
