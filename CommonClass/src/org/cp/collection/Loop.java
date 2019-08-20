@@ -20,7 +20,10 @@ public class Loop {
         list.add("C");
         list.add("D");
     }
-    
+
+    /**
+     * 循环打印
+     */
     @Test
     public void loopPrint() {
         System.out.println("---------iterator-----------------");
@@ -47,6 +50,33 @@ public class Loop {
         });
         System.out.println("-----------list.forEach(lambda) ---------------");
         list.forEach(item-> System.out.println(item));
+    }
+
+    /**
+     * 挑选移除
+     */
+    @Test
+    public void removeTest() {
+        //迭代器 移除
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            String item = iterator.next();
+            System.out.println(item);
+            if ("C".equals(item)) {
+                iterator.remove();
+            }
+        }
+        System.out.println(list);
+
+        for (int i = 0; i < list.size(); i++) {
+            String item = list.get(i);
+            System.out.println(item);
+            if ("B".equals(item)) {
+                list.remove(i);
+                i--;//一定要 i-- 修正索引,不然会遍历不到最后一个
+            }
+        }
+        System.out.println(list);
     }
     
 }
