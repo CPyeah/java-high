@@ -1,5 +1,7 @@
 package org.cp.collection;
 
+import java.util.Objects;
+
 /**
  * create by CP on 2019/8/19 0019.
  */
@@ -27,5 +29,27 @@ public class Person {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return Objects.equals(name, person.name) &&
+                Objects.equals(age, person.age);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
     }
 }
