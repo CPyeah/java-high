@@ -32,14 +32,14 @@ public class Loop {
             String item = iterator.next();
             System.out.println(item);
         }
-        System.out.println("---------for (String s : list)-----------------");
-        for (String s : list) {
-            System.out.println(s);
-        }
         System.out.println("----------for (int i = 0; ...)----------------");
         for (int i = 0; i < list.size(); i++) {
             String item = list.get(i);
             System.out.println(item);
+        }
+        System.out.println("---------for (String s : list)-----------------");
+        for (String s : list) {
+            System.out.println(s);
         }
         System.out.println("-----------list.forEach---------------");
         list.forEach(new Consumer<String>() {
@@ -66,7 +66,7 @@ public class Loop {
                 iterator.remove();
             }
         }
-        System.out.println(list);
+        System.out.println(list);//[A, B, D]
 
         for (int i = 0; i < list.size(); i++) {
             String item = list.get(i);
@@ -75,6 +75,26 @@ public class Loop {
                 list.remove(i);
                 i--;//一定要 i-- 修正索引,不然会遍历不到最后一个
             }
+        }
+        System.out.println(list);//[A, D]
+
+        list.forEach(item -> {
+            if ("A".equals(item)) {
+                //forEach 里面不能add和remove
+//                list.remove(item);
+            }
+        });
+        System.out.println(list);//
+    }
+
+    @Test
+    public void cleanList() {
+        System.out.println(list);
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            //先 next(), 后remove()
+            iterator.next();
+            iterator.remove();
         }
         System.out.println(list);
     }
