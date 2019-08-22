@@ -40,6 +40,21 @@ public class Person {
                 Objects.equals(age, person.age);
     }
 
+    /**
+     * result = 31 * result + (element == null ? 0 : element.hashCode());
+     * hash计算是加权31,再加一个数
+     * 31的由来:
+     *  好计算, 素数
+     *  所以 2的幂 前后的数比较好
+     *  2
+     *  4 -> 3 5
+     *  8 -> 7 9
+     *  16 -> 15 17
+     *  32 -> 31 33
+     *  64 -> 63 65
+     *  在以上的数中, 31很合适  可由 (1<<5)-1 得来, 又是素数
+     * @return
+     */
     @Override
     public int hashCode() {
         return Objects.hash(name, age);

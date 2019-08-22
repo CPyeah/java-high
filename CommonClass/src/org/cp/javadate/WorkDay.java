@@ -14,14 +14,16 @@ import java.util.Map;
  * 白1，白2，夜， 晚， 休1，休2
  * 排班计算工具
  * create by CP on 2019/8/9 0009.
+ * //16 3
  */
 public class WorkDay {
 
-    private String init = "2019-08-07";// 初始化日期
+    private String init = "2019-08-17";// 初始化日期
 
-    private int initSort = 5;// 初始化 工作 序列号
+    private int initSort = 3;// 初始化 工作 序列号 jingjing
+//    private int initSort = 5;// 初始化 工作 序列号 lulu
 
-    private String target = "2019-08-12";// 目标日期
+    private String target = "2019-08-22";// 目标日期
 
     private int showNextDay = 10;//显示目标及接下来的7天的工作安排
 
