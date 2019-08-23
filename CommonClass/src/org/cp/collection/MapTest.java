@@ -17,6 +17,7 @@ public class MapTest {
         map.put("A", "B");
         map.put(new Person("jingjing", 18), "jingjing");
         map.put(new Person("jingjing", 18), "cc");
+        System.out.println(map.get("A"));
         map.forEach((k, v)->{
             System.out.println(k+ ":" +v);
         });
