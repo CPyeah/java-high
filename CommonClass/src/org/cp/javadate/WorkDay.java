@@ -25,7 +25,7 @@ public class WorkDay {
 
     private String target = "2019-08-22";// 目标日期
 
-    private int showNextDay = 10;//显示目标及接下来的7天的工作安排
+    private int showNextDay = 15;//显示目标及接下来的7天的工作安排
 
     /**
      *  2019-08-07  为 休1
