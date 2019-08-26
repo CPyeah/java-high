@@ -18,7 +18,7 @@ package org.cp.collection.test;
  * @create 2019/8/24
  * @since 1.0.0
  */
-public class Employee {
+public class Employee implements Comparable{
 
     private String name;
     private Integer age;
@@ -64,5 +64,16 @@ public class Employee {
                 ", age=" + age +
                 ", birthday=" + birthday +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if (!(o instanceof Employee))
+            throw new RuntimeException("数据类型不匹配");
+//        return this.name.compareTo(((Employee) o).name);//按姓名排序
+        //先按年龄,再按姓名排序
+        int i = -this.age.compareTo(((Employee) o).age);
+        if (i!=0) return i;
+        return this.name.compareTo(((Employee) o).name);
     }
 }

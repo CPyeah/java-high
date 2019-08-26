@@ -18,7 +18,7 @@ package org.cp.collection.test;
  * @create 2019/8/24
  * @since 1.0.0
  */
-public class MyDate {
+public class MyDate implements Comparable{
 
     private Integer year;
     private Integer month;
@@ -64,5 +64,13 @@ public class MyDate {
                 ", month=" + month +
                 ", day=" + day +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if (!(o instanceof MyDate)) {
+            throw new RuntimeException("数据类型不匹配");
+        }
+        return Integer.compare(this.year, ((MyDate) o).getYear());
     }
 }
