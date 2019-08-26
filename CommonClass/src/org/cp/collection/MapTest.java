@@ -80,6 +80,34 @@ public class MapTest {
     }
 
     /**
+     * TreeMap会在put的时候,调用key的compareTo()方法, 进行自然排序
+     * 也可以在new TreeMap的时候,传入comparator进行定制排序
+     */
+    @Test
+    public void treeMapTest() {
+        //自然排序TreeMap
+        TreeMap<Object, Object> treeMap = new TreeMap<>();
+        treeMap.put(new Person("cp", 18), "CP");
+        treeMap.put(new Person("zj", 19), "ZJ");
+//        treeMap.put("AA", "aa");//key 的类型必须一致, 不然compareTo()方法报错
+        System.out.println(treeMap);
+        //定制排序TreeMap
+        TreeMap<String, Object> comparatorTreeMap = new TreeMap<String, Object>(new Comparator() {
+            @Override
+            public int compare(Object o1, Object o2) {
+                if (o1 instanceof String && o2 instanceof String)
+                    return ((String) o1).compareTo((String) o2);
+                throw new RuntimeException("cast error");
+            }
+        });
+        comparatorTreeMap.put("A", "A");
+        comparatorTreeMap.put("D", "D");
+        comparatorTreeMap.put("a", "a");
+        comparatorTreeMap.put("B", "B");
+        System.out.println(comparatorTreeMap);//{A=A, B=B, D=D, a=a}
+    }
+
+    /**
      * 几个特性:
      *      与HashMap一样, 实现Map接口, 可以存储键值对
      *      方法都用synchronized修饰, 线程安全, 效率低下
@@ -97,5 +125,7 @@ public class MapTest {
 
         ConcurrentHashMap<Object, Object> concurrentHashMap = new ConcurrentHashMap<>();
     }
+
+
 
 }

@@ -1,11 +1,12 @@
 package org.cp.collection;
 
+import java.time.Period;
 import java.util.Objects;
 
 /**
  * create by CP on 2019/8/19 0019.
  */
-public class Person {
+public class Person implements Comparable{
 
     private String name;
     private Integer age;
@@ -66,5 +67,13 @@ public class Person {
                 "name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    @Override
+    public int compareTo(Object o) {
+        if (!(o instanceof Person)) throw new RuntimeException("数据类型不匹配");
+        int i = this.name.compareTo(((Person) o).name);
+        if (i!=0) return i;
+        return this.age.compareTo(((Person) o).age);
     }
 }
