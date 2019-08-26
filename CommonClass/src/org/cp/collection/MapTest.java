@@ -66,6 +66,20 @@ public class MapTest {
     }
 
     /**
+     * LinkedHashMap继承自HashMap, 大体上与HashMap一样
+     * 不同点再与LinkedHashMap对Node进行了再次包装(java.util.LinkedHashMap.Entry),
+     * 添加了Entry<K,V> before, after; head, tail等内部属性,
+     * 对存储单元进行了链表化(双向), 在遍历的时候更加的高效
+     */
+    @Test
+    public void linkedHashMapTest() {
+        LinkedHashMap<Object, Object> linkedHashMap = new LinkedHashMap<>();
+        linkedHashMap.put("AA", "aa");
+        linkedHashMap.put(new Person("cp", 18), "CP");
+        System.out.println(linkedHashMap);
+    }
+
+    /**
      * 几个特性:
      *      与HashMap一样, 实现Map接口, 可以存储键值对
      *      方法都用synchronized修饰, 线程安全, 效率低下
