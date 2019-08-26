@@ -2,6 +2,10 @@ package org.cp.collection;
 
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
@@ -113,6 +117,7 @@ public class MapTest {
      *      方法都用synchronized修饰, 线程安全, 效率低下
      *      古老类, 起源于JDK1.0
      *      底层原理与HashMap相似, 方法相同
+     *      key 和 value 都不能为 null
      *      现实使用不多, 多数需要线程安全时,会使用Collections.synchronizedMap(new HashMap<>());
      *      它的子类 Properties 会在一些特殊情况下使用
      */
@@ -120,10 +125,32 @@ public class MapTest {
     public void hashtableTest() {
         Hashtable<Object, Object> hashtable = new Hashtable<>();
         hashtable.put("AA", "aa");
+//        hashtable.put(null, "aa");//这里会报空指针
+//        hashtable.put("BB", null);//这里会报空指针
         Collections.synchronizedMap(new HashMap<>());
         Properties properties = new Properties();
 
         ConcurrentHashMap<Object, Object> concurrentHashMap = new ConcurrentHashMap<>();
+    }
+
+    /**
+     * Properties 测试
+     * 继承自Hashtable
+     * 通常用来处理配置文件,资源文件(.properties)
+     * 一般key和value都为字符串
+     */
+    @Test
+    public void propertiesTest() throws IOException {
+        Properties properties = new Properties();
+        properties.put("A", "a");
+        properties.put(new Person("cp",18), "cp");
+        System.out.println(properties);//{A=a, Person{name='cp', age=18}=cp}
+        String absolutePath = new File(".").getAbsolutePath();
+        absolutePath = absolutePath.substring(0, absolutePath.length()-1);
+        properties.load(new FileInputStream(absolutePath+"src\\org\\cp\\collection\\props.properties"));
+        System.out.println(properties);//{A=a, Person{name='cp', age=18}=cp, ZJ=zj, C=c, B=b}
+        String value = properties.getProperty("ZJ");
+        System.out.println(value);//zj
     }
 
 
