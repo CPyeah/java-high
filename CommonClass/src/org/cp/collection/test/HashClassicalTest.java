@@ -26,6 +26,7 @@ public class HashClassicalTest {
 
     @Test
     public void pptest() {
+//        System.out.println(541234123&7);
         PP p1 = new PP(1001, "AA");
         PP p2 = new PP(1002, "BB");
         HashSet<PP> pps = new HashSet<>();
