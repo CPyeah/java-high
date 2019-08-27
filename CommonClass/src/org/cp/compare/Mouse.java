@@ -19,7 +19,7 @@ package org.cp.compare;
  * @create 2019/8/12
  * @since 1.0.0
  */
-public class Mouse implements Comparable{
+public class Mouse implements Comparable<Mouse>{
 
     private String name;
 
@@ -55,7 +55,7 @@ public class Mouse implements Comparable{
     }
 
     @Override
-    public int compareTo(Object o) {
+    public int compareTo(Mouse o) {
         Mouse m = (Mouse) o;
         return this.price.compareTo(m.price);
     }
