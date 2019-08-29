@@ -56,7 +56,8 @@ public class Mouse implements Comparable<Mouse>{
 
     @Override
     public int compareTo(Mouse o) {
-        Mouse m = (Mouse) o;
+//        Mouse m = (Mouse) o;
+        Mouse m = o;//Comparable<Mouse> 加了泛型, 不用再强转, 直接确定是Mouse
         return this.price.compareTo(m.price);
     }
 }

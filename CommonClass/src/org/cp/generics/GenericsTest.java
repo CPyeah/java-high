@@ -2,9 +2,7 @@ package org.cp.generics;
 
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * hello java 泛型
@@ -26,8 +24,12 @@ public class GenericsTest {
         list.add(61);
         list.add(53);
 //        list.add("Tom");//类型不安全 任何类型都可以添加
+//        Iterator iterator = list.iterator();
+//        while (iterator.hasNext()) {
+//            Object next = iterator.next();
+//        }
         for (Object score : list) {
-            Integer intScore = (Integer) score;
+            Integer intScore = (Integer) score;//强转可能出异常
             System.out.println(intScore);
             //在类型强转时, 可能发生类型转换异常
             //java.lang.ClassCastException: java.lang.String cannot be cast to java.lang.Integer
@@ -42,10 +44,15 @@ public class GenericsTest {
      */
     @Test
     public void usedGenerics() {
+        //泛型不能是基本数据类型
         ArrayList<Integer> list = new ArrayList<>();
         list.add(78);//存放学生的成绩
         list.add(61);
         list.add(53);
+        Iterator<Integer> iterator = list.iterator();// iterator可加泛型, 和容器泛型保持一致
+        while (iterator.hasNext()) {
+            Integer i = iterator.next();
+        }
 //        list.add("Tom");//这时编译会报错, 提前发现问题
         for(Integer i : list) {//可直接声明为 Integer类型, 后面不用强转, 直接使用
             System.out.println(i);
@@ -69,6 +76,14 @@ public class GenericsTest {
         map.forEach((k, v)->{
             System.out.println(k+":"+v);
         });
+        Set<Map.Entry<String, Integer>> entries = map.entrySet();
+        Iterator<Map.Entry<String, Integer>> iterator = entries.iterator();
+        while (iterator.hasNext()) {
+            //有泛型, 不用强转
+            Map.Entry<String, Integer> item = iterator.next();
+            String key = item.getKey();
+            Integer value = item.getValue();
+        }
         //泛型的嵌套
         ArrayList<Map<String, Integer>> maps = new ArrayList<>();
         maps.add(map);
