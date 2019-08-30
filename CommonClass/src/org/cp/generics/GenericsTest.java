@@ -113,6 +113,14 @@ public class GenericsTest {
         SubOrder<String> or = new SubOrder<String>(1, "subOrder", "String");
         BigDecimal bigDecimal = or.valueOf(new BigDecimal(121));
         System.out.println(bigDecimal);
+
+        Integer[] integers = new Integer[]{1,2,3,4,5};
+        List<Integer> integerList = Order.copyFromArrayToList(integers);
+        System.out.println(integerList);
+
+        Date[] dates = new Date[]{new Date(), new Date(1212121212121212L)};
+        List<Date> dateList = Order.copyFromArrayToList(dates);
+        System.out.println(dateList);
     }
 
     @Test
