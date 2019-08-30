@@ -180,4 +180,22 @@ public class GenericsTest {
 
     }
 
+    @Test
+    public void wildcardTest() {
+        ArrayList<SupOrder> supOrders = new ArrayList<>();
+        ArrayList<Order> orders = new ArrayList<>();
+        ArrayList<SubOrder> subOrders = new ArrayList<>();
+
+        ArrayList<?> list = new ArrayList<>();
+        ArrayList<? extends Order> list1 = new ArrayList<>();//
+        ArrayList<? super Order> list2 = new ArrayList<>();//
+
+        list = subOrders;// ? 可接受任何泛型
+        list1 = subOrders;// ? extends Order  可接受Order及其子类
+        list2 = orders;//? super Order 可接受Order及其父类
+
+        Order order = list1.get(0);// ? extends Order  可用最高层 Order 多态接收
+        Object object = list2.get(0);// ? super Order
+    }
+
 }

@@ -7,7 +7,7 @@ import java.util.List;
  * 自定义泛型类
  * create by CP on 2019/8/29 0029.
  */
-public class Order<T> {
+public class Order<T> extends SupOrder {
     private int id;
     private String name;
     private T orderT;
