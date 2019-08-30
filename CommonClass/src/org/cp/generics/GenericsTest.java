@@ -101,6 +101,8 @@ public class GenericsTest {
         test.setOrderT(4.4);//这里只能放Double类型
 
         SubOrder subOrder = new SubOrder(1, "subOrder", "String");
+
+        IntegerSubOrder integerSubOrder = new IntegerSubOrder(1, "", 121);
     }
 
     /**
