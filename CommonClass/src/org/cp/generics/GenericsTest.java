@@ -167,4 +167,17 @@ public class GenericsTest {
         List<Order> order = orderDao.getAll("order");
     }
 
+    /**
+     * 泛型在继承上的体现
+     */
+    @Test
+    public void genericsInInherit() {
+        ArrayList<Order> orders = new ArrayList<>();
+        ArrayList<SubOrder> subOrders = new ArrayList<>();
+//        orders = subOrders;//编译失败, orders与subOrders并列, 没有父子关系
+        List<Order> list = null;
+        list = orders;// 这list与orders是父子关系, List<Order> 是ArrayList<Order> orders的父类
+
+    }
+
 }
