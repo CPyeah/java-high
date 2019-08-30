@@ -2,6 +2,7 @@ package org.cp.generics;
 
 import org.junit.Test;
 
+import java.lang.reflect.Array;
 import java.math.BigDecimal;
 import java.util.*;
 
@@ -135,6 +136,28 @@ public class GenericsTest {
         System.out.println(abc1.getType());//abc
         System.out.println(abc1.getType().getClass().getName());//java.lang.StringBuilder
         System.out.println(def1.getType().getClass().getName());//java.lang.StringBuffer
+    }
+
+    /**
+     * 赋值与简单通配符
+     */
+    @Test
+    public void genericsClass() {
+        ArrayList<String> list1 = new ArrayList<>();
+        ArrayList<Double> list2 = new ArrayList<>();
+
+        //不同泛型,相同类型的对象间不能相互赋值, 它们相当于两个不同的类型, 并列关系
+//        list1 = list2;
+
+        //泛型通配符, 可以赋值
+        //但是不能添加除null意外的任何元素
+        ArrayList<?> list = null;
+        list = list1;
+        list = list2;
+//        list.add(new Object());
+//        list.add(121);
+        list.add(null);
+
     }
 
 }
