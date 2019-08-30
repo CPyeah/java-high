@@ -2,6 +2,7 @@ package org.cp.generics;
 
 import org.junit.Test;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 /**
@@ -88,6 +89,28 @@ public class GenericsTest {
         ArrayList<Map<String, Integer>> maps = new ArrayList<>();
         maps.add(map);
         System.out.println(maps);
+    }
+
+    /**
+     * 自定义泛型类测试
+     */
+    @Test
+    public void myGenericsTest() {
+        //定义了泛型, 在实例化时要用上
+        Order<Double> test = new Order<>(1, "test", 1.2);
+        test.setOrderT(4.4);//这里只能放Double类型
+
+        SubOrder subOrder = new SubOrder(1, "subOrder", "String");
+    }
+
+    /**
+     * 泛型方法测试
+     */
+    @Test
+    public void genericsMethodTest() {
+        SubOrder<String> or = new SubOrder<String>(1, "subOrder", "String");
+        BigDecimal bigDecimal = or.valueOf(new BigDecimal(121));
+        System.out.println(bigDecimal);
     }
 
     @Test
