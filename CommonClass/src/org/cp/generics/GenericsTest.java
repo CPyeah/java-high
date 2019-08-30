@@ -1,5 +1,6 @@
 package org.cp.generics;
 
+import org.cp.generics.dao.OrderDao;
 import org.junit.Test;
 
 import java.lang.reflect.Array;
@@ -158,6 +159,12 @@ public class GenericsTest {
 //        list.add(121);
         list.add(null);
 
+    }
+
+    @Test
+    public void daoTest() {
+        OrderDao orderDao = new OrderDao();
+        List<Order> order = orderDao.getAll("order");
     }
 
 }
