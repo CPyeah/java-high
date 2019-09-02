@@ -20,8 +20,8 @@ public class WorkDay {
 
     private String init = "2019-08-17";// 初始化日期
 
-    private int initSort = 3;// 初始化 工作 序列号 jingjing
-//    private int initSort = 5;// 初始化 工作 序列号 lulu
+//    private int initSort = 3;// 初始化 工作 序列号 jingjing
+    private int initSort = 5;// 初始化 工作 序列号 lulu
 
     private String target = "2019-08-22";// 目标日期
 
