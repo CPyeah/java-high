@@ -17,8 +17,12 @@ public class AutoTranslate {
 //        Map<String, String> map = getIndexInitData();
 //        File file = new File("src/translate/index.properties");
         //app common.proterties
-        Map<String, String> map = getCommonInitData();
-        File file = new File("src/translate/common.properties");
+//        Map<String, String> map = getCommonInitData();
+//        File file = new File("src/translate/common.properties");
+
+        //server content.proterties
+        Map<String, String> map = getServerInitData();
+        File file = new File("src/translate/content_en_US.properties");
 
         FileReader fileReader = new FileReader(file);
         BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -37,6 +41,39 @@ public class AutoTranslate {
             }
 
         }
+    }
+
+    private Map getServerInitData() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("The user does not exist", "사용자가 존재하지 않습니다. ");
+        map.put("Password error", "비밀번호 에러");
+        map.put("Successful login", "로그인 성공");
+        map.put("Successful inquiry for the latest version information!", "최신 버전 종보의 성공적인 요청");
+        map.put("The user already exists", "사용자가 이미 있습니다. ");
+        map.put("The mailbox has been registered.", "우편함이 등록되었습니다. ");
+        map.put("Mailbox function is abnormal, please wait a moment.", "우편함 기능이 비정상입니다. 잠시 기다리세요. ");
+        map.put("Register successfully", "등록 성공");
+        map.put("Password Reset Successfully, Please Log in with New Password", "비밀번호 재설정 성공. 새로운 비밀번호로 로그인하세요. ");
+        map.put("The verification code is incorrect. Please re-enter it.", "검증 코드가 다릅니다. 다시 입력하세요. ");
+        map.put("The authentication code has been sent. Please open your mailbox to get the authentication code.", "승인 코드가 발송되었습니다. 우편함을 열어서 인증 코드를 확인하세요. ");
+        map.put("The verification code was failed to send since the email adress does not exist or email function is abnormal.", "이메일 주소가 없거나 기능이 비정상적이어서 검증 코드 발송이 실패했습니다. ");
+        map.put("Log out success", "로그 아웃 송공");
+        map.put("The printer associated with this device is printing. Are you sure to close it?", "해당 프린터가 프린트 중입니다. 정말로 닫으시겠습니까? ");
+        map.put("Operate successfully", "작동 성공 ");
+        map.put("Sending'Query Printed Message'failed, please try again later!", "\"인쇄 정보 조회\"를 보내지 못했습니다. 나중에 다시 시도하십시오!");
+        map.put("Failed to send'Query Printed Message'request! Cause: Failed to parse the result of sending command!", "\"인쇄 정보 조회\"요청을 보내지 못했습니다! 원인 : 발송 명령 파싱 결과가 실패했습니다!");
+        map.put("Failed to send'Query Printed Message'request! Cause: Failed to get printer serial number!", "\"인쇄 정보 조회\"요청을 보내지 못했습니다! 원인 : 프린터 일련 번호를 가져 오지 못했습니다!");
+        map.put("An exception occurred when sending the command \"Query Print Message\". Please try again later!", "\"인쇄 정보 조회\"명령을 보내는 중에 오류가 발생했습니다. 나중에 다시 시도하십시오!");
+        map.put("Failed to get printer serial number, please try again later!", "프린터 일련 번호를 가져 오지 못했습니다. 나중에 다시 시도하십시오!");
+        map.put("An exception occurred when sending the'status query request'command. Please try again later!", "Status Query Request 명령을 보내는 중에 예외가 발생했습니다. 나중에 다시 시도하십시오!");
+        map.put("The result of parsing the send command failed, please try again later!", "발송 명령 구문 분석 결과가 실패했습니다. 나중에 다시 시도하십시오!");
+        map.put("Invalid request parameters!", "요청 매개 변수가 유효하지 않습니다!");
+        map.put("The request parameter format is incorrect!", "요청 수치 포맷이 올바르지 않습니다!");
+        map.put("Invalid parameter type!", "요효하지 않은 파라미터 타입!");
+        map.put("Business exception occurred, please try again later!", "비즈니스 예외가 발생했습니다. 나중에 다시 시도하십시오!");
+        map.put("Operation failed, please try again later!", "작업이 실패했습니다. 나중에 다시 시도하십시오!");
+
+        return map;
     }
 
     private Map getIndexInitData() {
