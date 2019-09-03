@@ -13,16 +13,15 @@ public class AutoTranslate {
 
     @Test
     public void test() throws IOException {
-
+        //app index.proterties
 //        Map<String, String> map = getIndexInitData();
 //        File file = new File("src/translate/index.properties");
-
+        //app common.proterties
         Map<String, String> map = getCommonInitData();
         File file = new File("src/translate/common.properties");
 
-        FileInputStream fileInputStream = new FileInputStream(file);
-        InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream);
-        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+        FileReader fileReader = new FileReader(file);
+        BufferedReader bufferedReader = new BufferedReader(fileReader);
         String temp = null;
         while((temp=bufferedReader.readLine())!=null) {
             if (!temp.contains("=")){

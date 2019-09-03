@@ -3,6 +3,7 @@ package org.cp.file;
 import org.junit.Test;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -83,8 +84,50 @@ public class FileTest {
      * 创建方法测试
      */
     @Test
-    public void createTest() {
-    
+    public void createTest() throws IOException {
+        //文件创建
+        File file1 = new File("aa/bb/hello.txt");
+        boolean newFile = file1.createNewFile();
+        if (newFile) {
+            System.out.println(file1.getName()+" created success!");
+        }
+        File file2 = new File("aa/ee/hello2.txt");
+//        boolean newFile2 = file2.createNewFile();//java.io.IOException: 系统找不到指定的路径。
+//        if (newFile2) {
+//            System.out.println(file2.getName()+" created success!");
+//        }
+        //目录创建 mkdir/mkdirs
+        File cc = new File("aa/bb/cc");
+        if (!cc.exists()) {
+            boolean mkdir = cc.mkdir();
+            if (mkdir) {
+                System.out.println("mk success");
+            }
+        }
+        File file = new File("aa/bb/dd/helloworld");
+        if (!file.exists()) {
+            boolean mkdir = file.mkdir();
+            if (mkdir) {
+                System.out.println("mkdir success");
+            } else {
+                boolean mkdirs = file.mkdirs();
+                if (mkdirs) {
+                    System.out.println("mkdirs success");
+                }
+            }
+        }
+        //完整套路
+        File file3 = new File("aa/xx/yy/zz/jingjing.txt");
+        if (!file3.getParentFile().exists()) {
+            boolean mkdirs = file3.getParentFile().mkdirs();
+            if (mkdirs) {
+                boolean jingjing = file3.createNewFile();
+                if (jingjing) System.out.println(file3.getName()+" created success!");
+            }
+        } else {
+            boolean jingjing = file3.createNewFile();
+            if (jingjing) System.out.println(file3.getName()+" created success!");
+        }
     }
 
     /**
