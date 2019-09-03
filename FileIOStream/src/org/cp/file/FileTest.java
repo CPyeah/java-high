@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -187,8 +188,91 @@ public class FileTest {
      *      拓展2：删除指定文件目录及其下的所有文件
      */
     @Test
-    public void practice3() {
+    public void practice3() throws IOException {
+        //创建目录和文件
+        createDirsAndFiles();
+        //遍历
+        iteratorDir("root");
+        //删除
+        deleteAll(new File("root"));
+    }
+
+    /**
+     * 递归删除
+     */
+    private void deleteAll(File node) {
+        if (!node.exists()) {//不存在
+            return;
+        }
+        if (node.isFile()) {//是文件, 直接删除
+            node.delete();
+            return;
+        }
+        if (node.isDirectory()) {//是目录
+            File[] files = node.listFiles();
+            if (files!=null&&files.length>0) {//有子文件或子目录
+                for (File child : files) {//循环递归
+                    deleteAll(child);
+                }
+                //子文件删除完了之后, 再删除该目录
+                node.delete();//删除该目录
+            } else {//没有子文件或子目录
+                node.delete();//删除该目录
+            }
+        }
 
     }
-    
+
+    /**
+     * 遍历
+     * hello.txt size is 5
+     * hi.txt size is 2
+     * helloworld.txt size is 10
+     * @param node
+     */
+    private void iteratorDir(String node) {
+        File nod = new File(node);
+        if (nod.isFile()) {//是文件 输出大小
+            System.out.println(nod.getName() + " size is " + nod.length());
+        } else {// 是目录
+            File[] files = nod.listFiles();
+            if (files!=null&&files.length>0) {
+                for (int i = 0; i <files.length; i++) {
+                    iteratorDir(files[i].getAbsolutePath());
+                }
+            } else {
+
+            }
+        }
+    }
+
+    /**
+     *  root
+     *      dir1
+     *          dir2
+     *          hello.txt
+     *      helloworld.txt
+     *      dir3
+     *      dir4
+     *          hi.txt
+     */
+    private void createDirsAndFiles() throws IOException {
+        File root = new File("root");
+        root.mkdir();
+        File dir1 = new File(root, "dir1");
+        dir1.mkdir();
+        File dir2 = new File(dir1, "dir2");
+        dir2.mkdir();
+        File hello = new File(dir1, "hello.txt");
+        hello.createNewFile();
+        File helloworld = new File(root, "helloworld.txt");
+        helloworld.createNewFile();
+        File dir3 = new File(root, "dir3");
+        dir3.mkdir();
+        File dir4 = new File(root, "dir4");
+        dir4.mkdir();
+        File hi = new File(dir4, "hi.txt");
+        hi.createNewFile();
+    }
+
 }
