@@ -135,7 +135,17 @@ public class FileTest {
      */
     @Test
     public void deleteTest() {
-    
+        File file = new File("aa/bb/cc");
+        boolean delete = file.delete();
+        if (delete) System.out.println(file.getName()+" deleted success");
+
+        File file1 = new File("aa/bb/hello.txt");
+        boolean delete1 = file1.delete();
+        if (delete1) System.out.println(file1.getName()+ " deleted success");
+
+        File file2 = new File("aa/gg/zz");
+        boolean delete2 = file2.delete();
+        if (delete2) System.out.println(file2.getName()+ " deleted success");
     }
 
     /**
