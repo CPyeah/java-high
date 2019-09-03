@@ -132,6 +132,7 @@ public class FileTest {
 
     /**
      * 删除测试
+     * delete() 只能删除 空的目录
      */
     @Test
     public void deleteTest() {
@@ -154,8 +155,15 @@ public class FileTest {
      *      2)编写方法，实现删除file中指定文件的操作
      */
     @Test
-    public void practice1() {
-    
+    public void practice1() throws IOException {
+        File fileDir = new File("file");
+        fileDir.mkdir();//创建父目录 file
+        File aaDir = new File(fileDir, "aaDir");
+        aaDir.mkdir();//创建子目录 aaDir
+        File bbFile = new File(fileDir, "bbFile.txt");
+        bbFile.createNewFile();//创建文件 bbFile
+        bbFile.delete();//删除bbFile
+        aaDir.delete();//删除aaDir
     }
 
     /**
@@ -163,7 +171,14 @@ public class FileTest {
      */
     @Test
     public void practice2() {
-
+        File file = new File("file");
+        File[] files = file.listFiles();
+        for (int i = 0; i < files.length; i++) {
+            File item = files[i];
+            if (item!=null && item.getName().endsWith(".jpg")) {
+                System.out.println(item.getName());
+            }
+        }
     }
 
     /**
