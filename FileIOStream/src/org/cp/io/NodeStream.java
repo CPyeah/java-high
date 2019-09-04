@@ -3,10 +3,7 @@ package org.cp.io;
 
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 
 /**
  * 节点流
@@ -90,6 +87,38 @@ public class NodeStream {
             }
         }
 
+    }
+
+    /**
+     * 输入输出 之 文件复制
+     */
+    @Test
+    public void copyFile() {
+        FileReader fileReader = null;
+        FileWriter fileWriter = null;
+        try {
+            File origin = new File("aa/dream.txt");
+            File copy = new File("aa/dream_copy.txt");
+            fileReader = new FileReader(origin);
+            fileWriter = new FileWriter(copy, false);
+            int data;
+            while ((data=fileReader.read())!=-1) {
+                fileWriter.write(data);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (fileReader!=null) {
+                    fileReader.close();
+                }
+                if (fileWriter!=null) {
+                    fileWriter.close();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 }
