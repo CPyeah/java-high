@@ -18,6 +18,11 @@ public class NodeStream {
 
     /**
      * simple to read a txt file
+     * 常规操作：
+     * 1、File实例化
+     * 2、流对象实例化
+     * 3、流读写
+     * 4、关闭资源
      */
     @Test
     public void readFileTest(){

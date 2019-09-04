@@ -41,6 +41,8 @@ public class AutoTranslate {
             }
 
         }
+        fileReader.close();
+        bufferedReader.close();
     }
 
     private Map getServerInitData() {
