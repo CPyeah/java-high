@@ -76,6 +76,8 @@ public class NodeStream {
             //2.写入数据
             fileWriter.write("I have big a dream!\n");
             fileWriter.write("You have a big dream too.\n");
+            fileWriter.write(121);//int作为字符编码会转成字符 121->y
+            fileWriter.write(new char[]{'a','b','c'});
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
