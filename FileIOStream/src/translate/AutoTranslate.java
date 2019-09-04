@@ -13,14 +13,15 @@ public class AutoTranslate {
 
     @Test
     public void test() throws IOException {
-        //app index.proterties
+        //app index.properties
 //        Map<String, String> map = getIndexInitData();
 //        File file = new File("src/translate/index.properties");
-        //app common.proterties
+
+        //app common.properties
 //        Map<String, String> map = getCommonInitData();
 //        File file = new File("src/translate/common.properties");
 
-        //server content.proterties
+        //server content.properties
         Map<String, String> map = getServerInitData();
         File file = new File("src/translate/content_en_US.properties");
 
