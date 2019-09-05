@@ -102,8 +102,14 @@ public class NodeStream {
             fileReader = new FileReader(origin);
             fileWriter = new FileWriter(copy, false);
             int data;
-            while ((data=fileReader.read())!=-1) {
-                fileWriter.write(data);
+            char[] buffer = new char[5];
+            //基本写法
+//            while ((data=fileReader.read())!=-1) {
+//                fileWriter.write(data);
+//            }
+            //带缓存的写法
+            while ((data=fileReader.read(buffer))!=-1) {
+                fileWriter.write(buffer,0,data);//特别注意
             }
         } catch (IOException e) {
             e.printStackTrace();
