@@ -136,7 +136,7 @@ public class NodeStream {
      *
      * @param streams
      */
-    private void closeStream(Closeable... streams) {
+    public static void closeStream(Closeable... streams) {
         for (Closeable c : streams) {
             if (c != null) {
                 try {
