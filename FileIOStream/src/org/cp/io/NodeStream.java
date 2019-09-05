@@ -137,13 +137,15 @@ public class NodeStream {
      * @param streams
      */
     public static void closeStream(Closeable... streams) {
+
         for (Closeable c : streams) {
             if (c != null) {
+                String streamName = c.getClass().getName();
                 try {
                     c.close();
-                    String streamName = c.getClass().getName();
                     System.out.println(streamName + " close successful! ");
                 } catch (IOException e) {
+                    System.out.println(streamName + " close failed! ");
                     e.printStackTrace();
                 }
             }
