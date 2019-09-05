@@ -23,7 +23,7 @@ public class NodeStream {
      * 4、关闭资源
      */
     @Test
-    public void readFileTest(){
+    public void readFileTest() {
         //字符流, 适合读取文本文件, 一个字符一个字符的读取,
         FileReader fileReader = null;
         try {
@@ -36,9 +36,9 @@ public class NodeStream {
 //            }
             //方式二: 数组缓存读取
             char[] buf = new char[5];//容量为5的容器
-            while ((data = fileReader.read(buf))!=-1) {//data 返回的是字符个数
+            while ((data = fileReader.read(buf)) != -1) {//data 返回的是字符个数
 //                System.out.print(buf);//helloWorld_IOldD 由于buf容器没有清空, 最终输出有缓存
-                System.out.print(new String(buf,0, data));//helloWorld_IO 这样截取是正解
+                System.out.print(new String(buf, 0, data));//helloWorld_IO 这样截取是正解
             }
             System.out.println();
         } catch (IOException e) {
@@ -53,7 +53,7 @@ public class NodeStream {
      * write sth in the file test
      */
     @Test
-    public void writeFileTest(){
+    public void writeFileTest() {
         FileWriter fileWriter = null;
         try {
             //1. writer创建
@@ -68,7 +68,7 @@ public class NodeStream {
             fileWriter.write("I have big a dream!\n");
             fileWriter.write("You have a big dream too.\n");
             fileWriter.write(121);//int作为字符编码会转成字符 121->y
-            fileWriter.write(new char[]{'a','b','c'});
+            fileWriter.write(new char[]{'a', 'b', 'c'});
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -96,8 +96,8 @@ public class NodeStream {
 //            }
             //带缓存的写法
             char[] buffer = new char[5];
-            while ((data=fileReader.read(buffer))!=-1) {
-                fileWriter.write(buffer,0,data);//特别注意
+            while ((data = fileReader.read(buffer)) != -1) {
+                fileWriter.write(buffer, 0, data);//特别注意
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -121,7 +121,7 @@ public class NodeStream {
             File img_copy = new File("aa/java_copy.jpg");
             fileOutputStream = new FileOutputStream(img_copy);
             int data;
-            while ((data=fileInputStream.read())!=-1) {
+            while ((data = fileInputStream.read()) != -1) {
                 fileOutputStream.write(data);
             }
         } catch (IOException e) {
@@ -133,17 +133,20 @@ public class NodeStream {
 
     /**
      * 关闭流通用方法
+     *
      * @param streams
      */
     private void closeStream(Closeable... streams) {
-        try {
-            for(Closeable c : streams) {
-                if (c!=null) {
+        for (Closeable c : streams) {
+            if (c != null) {
+                try {
                     c.close();
+                    String streamName = c.getClass().getName();
+                    System.out.println(streamName + " close successful! ");
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 }
