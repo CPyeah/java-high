@@ -35,13 +35,13 @@ public class TransferStream {
             int data;
             char[] buffer = new char[5];
             System.out.println("----------gbk----------");
-            while ((data=gbk_Stream.read(buffer))!=-1) {
+            while ((data = gbk_Stream.read(buffer)) != -1) {
                 String s = new String(buffer, 0, data);
                 System.out.print(s);
             }
             System.out.println();
             System.out.println("----------utf-8----------");
-            while ((data=utf_Stream.read(buffer))!=-1) {
+            while ((data = utf_Stream.read(buffer)) != -1) {
                 String s = new String(buffer, 0, data);
                 System.out.print(s);
             }
