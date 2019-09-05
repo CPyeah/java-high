@@ -44,13 +44,7 @@ public class NodeStream {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {//流资源关闭
-            if (fileReader!=null) {
-                try {
-                    fileReader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            closeStream(fileReader);
         }
 
     }
@@ -78,13 +72,7 @@ public class NodeStream {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            if (fileWriter != null) {
-                try {
-                    fileWriter.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            closeStream(fileWriter);
         }
 
     }
@@ -102,29 +90,60 @@ public class NodeStream {
             fileReader = new FileReader(origin);
             fileWriter = new FileWriter(copy, false);
             int data;
-            char[] buffer = new char[5];
             //基本写法
 //            while ((data=fileReader.read())!=-1) {
 //                fileWriter.write(data);
 //            }
             //带缓存的写法
+            char[] buffer = new char[5];
             while ((data=fileReader.read(buffer))!=-1) {
                 fileWriter.write(buffer,0,data);//特别注意
             }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            try {
-                if (fileReader!=null) {
-                    fileReader.close();
-                }
-                if (fileWriter!=null) {
-                    fileWriter.close();
-                }
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            closeStream(fileReader, fileWriter);
         }
     }
 
+
+    /**
+     * 图片的复制
+     */
+    @Test
+    public void copyImage() {
+        FileInputStream fileInputStream = null;
+        FileOutputStream fileOutputStream = null;
+        try {
+            //对于不是文本文件, 要用XXXInputStream & XXXOutputStream, 不能用XXXReader
+            File img = new File("aa/java.jpg");
+            fileInputStream = new FileInputStream(img);
+            File img_copy = new File("aa/java_copy.jpg");
+            fileOutputStream = new FileOutputStream(img_copy);
+            int data;
+            while ((data=fileInputStream.read())!=-1) {
+                fileOutputStream.write(data);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            closeStream(fileInputStream, fileOutputStream);
+        }
+    }
+
+    /**
+     * 关闭流通用方法
+     * @param streams
+     */
+    private void closeStream(Closeable... streams) {
+        try {
+            for(Closeable c : streams) {
+                if (c!=null) {
+                    c.close();
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
