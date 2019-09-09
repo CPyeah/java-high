@@ -76,17 +76,25 @@ public class NodeStream {
         }
 
     }
+    
+    @Test
+    public void nodeStreamCopy() {
+        long before = System.currentTimeMillis();
+        copyFile("aa/soga.txt", "aa/soga1.txt");
+        long after = System.currentTimeMillis();
+        System.out.println("cost " + (after-before) + " ms");//cost 5 ms
+
+    }
 
     /**
      * 输入输出 之 文件复制
      */
-    @Test
-    public void copyFile() {
+    public void copyFile(String src, String dest) {
         FileReader fileReader = null;
         FileWriter fileWriter = null;
         try {
-            File origin = new File("aa/dream.txt");
-            File copy = new File("aa/dream_copy.txt");
+            File origin = new File(src);
+            File copy = new File(dest);
             fileReader = new FileReader(origin);
             fileWriter = new FileWriter(copy, false);
             int data;
@@ -95,7 +103,7 @@ public class NodeStream {
 //                fileWriter.write(data);
 //            }
             //带缓存的写法
-            char[] buffer = new char[5];
+            char[] buffer = new char[128];
             while ((data = fileReader.read(buffer)) != -1) {
                 fileWriter.write(buffer, 0, data);//特别注意
             }

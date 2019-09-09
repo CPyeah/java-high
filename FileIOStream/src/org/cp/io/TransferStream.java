@@ -2,7 +2,6 @@ package org.cp.io;
 
 import org.junit.Test;
 
-import javax.xml.soap.Node;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -50,7 +49,7 @@ public class TransferStream {
             e.printStackTrace();
         } finally {
             System.out.println("----------close stream----------");
-            NodeStream.closeStream(gbk_fileInputStream, utf8_fileInputStream, gbk_Stream, utf_Stream);
+            NodeStream.closeStream(gbk_Stream, utf_Stream);
         }
 
 
