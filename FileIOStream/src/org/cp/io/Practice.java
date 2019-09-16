@@ -78,5 +78,13 @@ public class Practice {
             NodeStream.closeStream(txtReader, bufferedWriter);
         }
     }
-    
+
+
+    public static void main(String[] args) {
+        BufferedInputStream bufferedInputStream = new BufferedInputStream(System.in);
+        InputStreamReader inputStreamReader = new InputStreamReader(bufferedInputStream);
+        BufferedReader bufferedReader = new BufferedReader(inputStreamReader);
+
+    }
+
 }

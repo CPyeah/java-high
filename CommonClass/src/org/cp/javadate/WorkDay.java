@@ -20,12 +20,12 @@ public class WorkDay {
 
     private String init = "2019-08-17";// 初始化日期
 
-//    private int initSort = 3;// 初始化 工作 序列号 jingjing
-    private int initSort = 5;// 初始化 工作 序列号 lulu
+    private int initSort = 3;// 初始化 工作 序列号 jingjing
+//    private int initSort = 5;// 初始化 工作 序列号 lulu
 
-    private String target = "2019-08-22";// 目标日期
+    private String target = "2019-09-05";// 目标日期
 
-    private int showNextDay = 15;//显示目标及接下来的7天的工作安排
+    private int showNextDay = 40;//显示目标及接下来的7天的工作安排
 
     /**
      *  2019-08-07  为 休1
