@@ -2,9 +2,7 @@ package org.cp.io;
 
 import org.junit.Test;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.RandomAccessFile;
+import java.io.*;
 
 /**
  * 随机存储文件流
@@ -37,6 +35,39 @@ public class RandomAccessFileTest {
             NodeStream.closeStream(r, w);
         }
 
+    }
+    
+    @Test
+    public void insertOverRide() throws IOException{
+        RandomAccessFile rw = new RandomAccessFile("aa/abc.txt", "rw");
+
+        //在第8个位置上添加,及覆盖后面的字符
+//        rw.seek(8);
+
+        // 在最后添加
+//        rw.seek(new File("aa/abc.txt").length());
+
+        // 在第6个位置插入
+        rw.seek(6);
+        byte[] bytes = new byte[8];
+        int len;
+        //ByteArrayOutputStream 替换 StringBuilder
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        StringBuilder stringBuilder = new StringBuilder((int) new File("aa/abc.txt").length());
+        while ((len = rw.read(bytes))!=-1) {
+            byteArrayOutputStream.write(bytes, 0, len);
+            stringBuilder.append(new String(bytes, 0, len));
+        }
+        rw.seek(6);//指针调回到初始位置:6
+        rw.writeBytes("121");
+
+        byte[] bytes1 = byteArrayOutputStream.toByteArray();
+//        rw.writeBytes(new String(bytes1));
+
+        rw.writeBytes(stringBuilder.toString());
+
+
+        NodeStream.closeStream(rw);
     }
 
 }
