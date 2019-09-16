@@ -2,10 +2,7 @@ package org.cp.io;
 
 import org.junit.Test;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 
 /**
  * 转换流, 字符集
@@ -53,6 +50,28 @@ public class TransferStream {
         }
 
 
+    }
+
+    /**
+     * utf-8的文件转换成一个新的gbk的文件
+     */
+    @Test
+    public void transfer() {
+        InputStreamReader utf8 = null;
+        OutputStreamWriter gbk = null;
+        try {
+            utf8 = new InputStreamReader(new FileInputStream("aa/utf-8.txt"), "utf-8");
+            gbk = new OutputStreamWriter(new FileOutputStream("aa/gbk.txt"), "gbk");
+            char[] chars = new char[8];
+            int len;
+            while ((len = utf8.read(chars)) != -1) {
+                gbk.write(chars, 0, len);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            NodeStream.closeStream(utf8, gbk);
+        }
     }
 
 }

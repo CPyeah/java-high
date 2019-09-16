@@ -3,5 +3,6 @@
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/FileIOStream/aa/GB2312.txt" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/FileIOStream/aa/gbk.txt" charset="GBK" />
   </component>
 </project>
