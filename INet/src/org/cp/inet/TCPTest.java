@@ -18,6 +18,7 @@ public class TCPTest {
 
     /**
      * 服务端
+     *
      * @throws IOException
      */
     @Test
@@ -28,7 +29,7 @@ public class TCPTest {
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         byte[] buf = new byte[8];
         int len;
-        while ((len = inputStream.read(buf))!=-1) {
+        while ((len = inputStream.read(buf)) != -1) {
             byteArrayOutputStream.write(buf, 0, len);
         }
         System.out.println(byteArrayOutputStream.toString());
@@ -40,6 +41,10 @@ public class TCPTest {
         serverSocket.close();
     }
 
+    /**
+     * 客户端
+     * @throws IOException
+     */
     @Test
     public void client() throws IOException {
         InetAddress localHost = InetAddress.getLocalHost();
@@ -49,5 +54,5 @@ public class TCPTest {
         out.close();
         socket.close();
     }
-    
+
 }
