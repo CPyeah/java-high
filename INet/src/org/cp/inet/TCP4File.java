@@ -33,11 +33,9 @@ public class TCP4File {
             }
             System.out.println("文件接收成功!");
 
-//            socket.
-
             //再返回成功信息
             outputStream1 = socket.getOutputStream();
-            outputStream.write("文件已收到, over.".getBytes());
+            outputStream1.write("文件已收到, over.".getBytes());
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -66,10 +64,13 @@ public class TCP4File {
             }
             System.out.println("文件发送成功!");
 
-            //接收成功信息
+            //客户端在发送图片成功之后, 需要关闭输出通道, 为服务端返回的信息输入做准备
+            socket.shutdownOutput();
+
+            //返回接收成功信息
             inputStream = socket.getInputStream();
             byteArrayOutputStream = new ByteArrayOutputStream();
-            while ((len = inputStream.read(buf)) != 1) {
+            while ((len = inputStream.read(buf)) != -1) {
                 byteArrayOutputStream.write(buf, 0, len);
             }
             System.out.println(byteArrayOutputStream.toString());
