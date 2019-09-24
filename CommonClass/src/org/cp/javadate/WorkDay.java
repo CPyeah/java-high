@@ -23,7 +23,7 @@ public class WorkDay {
     private int initSort = 3;// 初始化 工作 序列号 jingjing
 //    private int initSort = 5;// 初始化 工作 序列号 lulu
 
-    private String target = "2019-09-05";// 目标日期
+    private String target = "2019-09-20";// 目标日期
 
     private int showNextDay = 40;//显示目标及接下来的7天的工作安排
 
