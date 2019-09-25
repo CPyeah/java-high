@@ -1,11 +1,18 @@
 package org.cp.reflection;
 
+import org.junit.Test;
+
+import java.io.Serializable;
+import java.lang.annotation.*;
+
 /**
  * create by CP on 2019/9/24 0024.
  */
-public class Person {
+@Deprecated
+public class Person extends Animal implements Serializable {
 
     private final static String TAG = "PersonTag";
+    private static final long serialVersionUID = 8749709795227605964L;
 
     private String name;
     private Integer age;
