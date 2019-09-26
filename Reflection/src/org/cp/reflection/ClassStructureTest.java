@@ -93,11 +93,11 @@ public class ClassStructureTest {
 
         Type genericSuperclass = clazz.getGenericSuperclass();
         System.out.println(genericSuperclass);
-//        ParameterizedType paramType = (ParameterizedType) genericSuperclass;
-//        //获取泛型类型
-//        Type[] actualTypeArguments = paramType.getActualTypeArguments();
-////        System.out.println(actualTypeArguments[0].getTypeName());
-//        System.out.println(((Class)actualTypeArguments[0]).getName());
+        ParameterizedType paramType = (ParameterizedType) genericSuperclass;
+        //获取泛型类型
+        Type[] actualTypeArguments = paramType.getActualTypeArguments();
+        System.out.println(actualTypeArguments[0].getTypeName());
+        System.out.println(((Class)actualTypeArguments[0]).getName());
 
     }
 
@@ -131,7 +131,7 @@ public class ClassStructureTest {
         Class<Person> clazz = Person.class;
         Annotation[] annotations = clazz.getAnnotations();
         for(Annotation annos : annotations){
-            System.out.println(annos);// @java.lang.Deprecated()
+            System.out.println(annos);// @org.cp.reflection.entities.MyAnnotation(value=ann)
         }
     }
     

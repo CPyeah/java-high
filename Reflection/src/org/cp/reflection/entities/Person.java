@@ -9,7 +9,7 @@ import java.io.Serializable;
  * create by CP on 2019/9/24 0024.
  */
 @MyAnnotation("ann")
-public class Person extends Animal implements Serializable {
+public class Person extends Animal<String> implements Serializable {
 
     private final static String TAG = "PersonTag";
     private static final long serialVersionUID = 8749709795227605964L;
