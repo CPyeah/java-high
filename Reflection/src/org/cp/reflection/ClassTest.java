@@ -1,5 +1,6 @@
 package org.cp.reflection;
 
+import org.cp.reflection.entities.Person;
 import org.junit.Test;
 
 /**
@@ -21,11 +22,11 @@ public class ClassTest {
         Class<? extends Person> clazz2 = person.getClass();
         System.out.println(clazz2);
         //3.
-        Class<?> clazz3 = Class.forName("org.cp.reflection.Person");
+        Class<?> clazz3 = Class.forName("org.cp.reflection.entities.Person");
         System.out.println(clazz3);
         //4.
         ClassLoader classLoader = ClassTest.class.getClassLoader();
-        Class<?> clazz4 = classLoader.loadClass("org.cp.reflection.Person");
+        Class<?> clazz4 = classLoader.loadClass("org.cp.reflection.entities.Person");
         System.out.println(clazz4);
 
         //取的class对象都是同一个class对象, 在运行是会先缓存一个class对象

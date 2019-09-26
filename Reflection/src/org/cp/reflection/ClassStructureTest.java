@@ -1,5 +1,6 @@
 package org.cp.reflection;
 
+import org.cp.reflection.entities.Person;
 import org.junit.Test;
 
 import java.lang.annotation.Annotation;
@@ -80,7 +81,7 @@ public class ClassStructureTest {
     public void getSuperClassTest() {
         Class<Person> clazz = Person.class;
         Class<? super Person> superclass = clazz.getSuperclass();
-        System.out.println(superclass);//class org.cp.reflection.Animal
+        System.out.println(superclass);//class org.cp.reflection.entities.Animal
     }
 
     /*

@@ -1,5 +1,6 @@
 package org.cp.reflection;
 
+import org.cp.reflection.entities.Person;
 import org.junit.Test;
 
 import java.io.FileInputStream;

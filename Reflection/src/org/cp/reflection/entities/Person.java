@@ -1,14 +1,14 @@
-package org.cp.reflection;
+package org.cp.reflection.entities;
 
-import org.junit.Test;
+import org.cp.reflection.entities.Animal;
+import org.cp.reflection.entities.MyAnnotation;
 
 import java.io.Serializable;
-import java.lang.annotation.*;
 
 /**
  * create by CP on 2019/9/24 0024.
  */
-@Deprecated
+@MyAnnotation("ann")
 public class Person extends Animal implements Serializable {
 
     private final static String TAG = "PersonTag";

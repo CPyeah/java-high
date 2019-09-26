@@ -1,5 +1,6 @@
 package org.cp.reflection;
 
+import org.cp.reflection.entities.Person;
 import org.junit.Test;
 
 import java.lang.reflect.Constructor;
@@ -17,7 +18,7 @@ public class ReflectionTest {
     @Test
     public void helloReflection() throws ClassNotFoundException, NoSuchFieldException, NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
         System.out.println("---------对象反射------------");
-        Class<?> clazz = Class.forName("org.cp.reflection.Person");
+        Class<?> clazz = Class.forName("org.cp.reflection.entities.Person");
         Person o = (Person) clazz.newInstance();
         o.setName("jj");
         o.setAge(25);
