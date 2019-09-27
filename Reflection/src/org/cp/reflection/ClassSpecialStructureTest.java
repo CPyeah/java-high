@@ -3,9 +3,8 @@ package org.cp.reflection;
 import org.cp.reflection.entities.Person;
 import org.junit.Test;
 
-import java.lang.reflect.AnnotatedType;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+import java.lang.annotation.Annotation;
+import java.lang.reflect.*;
 
 /**
  * 调用运行时类的指定结构
@@ -47,8 +46,34 @@ public class ClassSpecialStructureTest {
     }
     
     @Test
-    public void getMethod() {
-
+    public void getMethod() throws NoSuchMethodException {
+        Class<Person> clazz = Person.class;
+        Method sayHi = clazz.getDeclaredMethod("sayHi", String.class, int.class);
+        sayHi.setAccessible(true);
+        Annotation[] annotations = sayHi.getAnnotations();
+        for (Annotation annotation : annotations) {
+            System.out.println(annotation.toString());
+        }
+        int modifiers = sayHi.getModifiers();
+        String s = Modifier.toString(modifiers); //修饰
+        System.out.print(s + "\t");
+        Type genericReturnType = sayHi.getGenericReturnType();
+        System.out.print(genericReturnType + "\t");
+        String name = sayHi.getName();
+        System.out.print(name + "\t");
+        System.out.print("(");
+        Parameter[] parameters = sayHi.getParameters();
+        for (Parameter parameter : parameters) {
+            Class<?> type = parameter.getType();
+            String name1 = parameter.getName();
+            System.out.print(type.toString() + " ");
+            System.out.print(name1 + ", ");
+        }
+        System.out.print(")" + "\t" + "throws"+ "\t");
+        Type[] genericExceptionTypes = sayHi.getGenericExceptionTypes();
+        for (Type type : genericExceptionTypes) {
+            System.out.print(type + "\t");
+        }
     }
 
 }

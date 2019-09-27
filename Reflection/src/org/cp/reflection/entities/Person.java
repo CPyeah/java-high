@@ -66,7 +66,7 @@ public class Person extends Animal<String> implements Serializable {
     }
 
     @MyAnnotation("sayHi")
-    private int sayHi(String name, int f) {
+    private int sayHi(String name, int f) throws ClassNotFoundException{
         System.out.println("hello " + name);
         return f;
     }
