@@ -18,8 +18,14 @@ public class ClassSpecialStructureTest {
     @Test
     public void getField() throws Exception {
         Class<Person> clazz = Person.class;
+        Person person = clazz.newInstance();
+        person.setName("zh");
         Field name = clazz.getDeclaredField("name");
         name.setAccessible(true);
+        Object o = name.get(person);
+        System.out.println(o);
+        name.set(person, "zhuzhu");
+        System.out.println(person.getName());
         System.out.println(name.getType().getName());// 数据类型
         /**
          * 修饰
@@ -46,10 +52,13 @@ public class ClassSpecialStructureTest {
     }
     
     @Test
-    public void getMethod() throws NoSuchMethodException {
+    public void getMethod() throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
         Class<Person> clazz = Person.class;
+        Person person = clazz.newInstance();
         Method sayHi = clazz.getDeclaredMethod("sayHi", String.class, int.class);
         sayHi.setAccessible(true);
+        Object invoke = sayHi.invoke(person, "你好", 21);
+        System.out.println(invoke);
         Annotation[] annotations = sayHi.getAnnotations();
         for (Annotation annotation : annotations) {
             System.out.println(annotation.toString());
@@ -76,4 +85,20 @@ public class ClassSpecialStructureTest {
         }
     }
 
+    /**
+     * 构造器获取
+     */
+    @Test
+    public void getConstructor() throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
+        Class<Person> clazz = Person.class;
+        Constructor<Person> constructor = clazz.getDeclaredConstructor(String.class, Integer.class);
+        constructor.setAccessible(true);
+        Person zz = constructor.newInstance("zz", 18);
+        System.out.println(zz);
+
+        System.out.println(constructor.getAnnotations());
+        System.out.println(Modifier.toString(constructor.getModifiers()));
+        System.out.println(constructor.getName());
+        System.out.println(constructor.getParameters().length);
+    }
 }
