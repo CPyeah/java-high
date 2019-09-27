@@ -8,12 +8,13 @@ import java.io.Serializable;
 /**
  * create by CP on 2019/9/24 0024.
  */
-@MyAnnotation("ann")
+@MyAnnotation("person")
 public class Person extends Animal<String> implements Serializable {
 
     private final static String TAG = "PersonTag";
     private static final long serialVersionUID = 8749709795227605964L;
 
+    @MyAnnotation("name")
     private String name;
     private Integer age;
     public Integer phone;
@@ -64,6 +65,7 @@ public class Person extends Animal<String> implements Serializable {
         System.out.println("hello " + name);
     }
 
+    @MyAnnotation("sayHi")
     private int sayHi(String name, int f) {
         System.out.println("hello " + name);
         return f;

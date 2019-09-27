@@ -18,12 +18,13 @@ public class MyThread extends Thread {
         }
     }
 }
+
 class Test {
     public static void main(String[] args) {
         MyThread t1 = new MyThread();
         MyThread t2 = new MyThread();
         MyThread t3 = new MyThread();
-        Thread t4 = new Thread(){
+        Thread t4 = new Thread() {
             @Override
             public void run() {
                 while (true) {
@@ -47,7 +48,6 @@ class Test {
         t2.start();
         t3.start();
         t4.start();
-
 
 
     }

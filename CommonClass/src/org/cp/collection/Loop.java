@@ -49,7 +49,7 @@ public class Loop {
             }
         });
         System.out.println("-----------list.forEach(lambda) ---------------");
-        list.forEach(item-> System.out.println(item));
+        list.forEach(item -> System.out.println(item));
     }
 
     /**
@@ -98,5 +98,5 @@ public class Loop {
         }
         System.out.println(list);
     }
-    
+
 }
