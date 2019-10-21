@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/CommonClass/CommonClass.iml" filepath="$PROJECT_DIR$/CommonClass/CommonClass.iml" />
       <module fileurl="file://$PROJECT_DIR$/FileIOStream/FileIOStream.iml" filepath="$PROJECT_DIR$/FileIOStream/FileIOStream.iml" />
       <module fileurl="file://$PROJECT_DIR$/INet/INet.iml" filepath="$PROJECT_DIR$/INet/INet.iml" />
+      <module fileurl="file://$PROJECT_DIR$/JDK8NewFeatures/JDK8NewFeatures.iml" filepath="$PROJECT_DIR$/JDK8NewFeatures/JDK8NewFeatures.iml" />
       <module fileurl="file://$PROJECT_DIR$/Reflection/Reflection.iml" filepath="$PROJECT_DIR$/Reflection/Reflection.iml" />
       <module fileurl="file://$PROJECT_DIR$/Thread/Thread.iml" filepath="$PROJECT_DIR$/Thread/Thread.iml" />
       <module fileurl="file://$PROJECT_DIR$/spring-boot-quick.iml" filepath="$PROJECT_DIR$/spring-boot-quick.iml" />
