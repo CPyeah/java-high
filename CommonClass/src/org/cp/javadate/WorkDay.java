@@ -18,14 +18,26 @@ import java.util.Map;
  */
 public class WorkDay {
 
-    private String init = "2019-10-18";// 初始化日期
+    private String init = "2019-10-29";// 初始化日期
 
-//    private int initSort = 2;// 初始化 工作 序列号 jingjing
-    private int initSort = 1;// 初始化 工作 序列号 lulu
+    private int initSort = 9;// 初始化 工作 序列号 jingjing
+//    private int initSort = 1;// 初始化 工作 序列号 lulu
 
-    private String target = "2019-10-19";// 目标日期
+    private String target = "2019-10-29";// 目标日期
 
-    private int showNextDay = 130;//显示目标及接下来的7天的工作安排
+    private int showNextDay = 120;//显示目标及接下来的7天的工作安排
+
+    static Map<LocalDate, String> specialDay = new HashMap<>();
+    static {
+        specialDay.put(LocalDate.parse("2019-12-15"), "\uD83C\uDF82");//蛋糕
+        specialDay.put(LocalDate.parse("2019-12-22"), "❄");//雪花  冬至
+        specialDay.put(LocalDate.parse("2019-12-24"), "\uD83C\uDF4E");//苹果
+        specialDay.put(LocalDate.parse("2019-12-25"), "\uD83C\uDF84");//圣诞树
+        specialDay.put(LocalDate.parse("2020-01-01"), "\uD83E\uDD5A");//鸡蛋
+        specialDay.put(LocalDate.parse("2020-01-24"), "\uD83C\uDF19");//月亮
+        specialDay.put(LocalDate.parse("2020-01-25"), "☀");//太阳
+        specialDay.put(LocalDate.parse("2020-02-14"), "❤");//爱心
+    }
 
     /**
      *  2019-08-07  为 休1
@@ -70,7 +82,11 @@ public class WorkDay {
             targetSort++;
             int index = targetSort % loop == 0 ? loop :targetSort % loop;
             String workName = (String) workMap.get(index);
-            System.out.println("    " + targetDate +"（"+targetDate.getDayOfWeek()+ "）是 "+ workName);
+            if (specialDay.get(targetDate)!=null) {
+                System.out.println("    "+ specialDay.get(targetDate) + targetDate + "（" + targetDate.getDayOfWeek() + "）是 " + workName);
+            } else {
+                System.out.println("    " + targetDate + "（" + targetDate.getDayOfWeek() + "）是 " + workName);
+            }
         }
     }
 
@@ -101,5 +117,7 @@ public class WorkDay {
         workMap.put(6, "休2");
         return workMap;
     }
+
+
 
 }
