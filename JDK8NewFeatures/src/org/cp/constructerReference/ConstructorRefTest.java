@@ -3,6 +3,7 @@ package org.cp.constructerReference;
 import org.cp.entities.Employee;
 import org.junit.Test;
 
+import java.util.ArrayList;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 import java.util.function.Supplier;
@@ -46,6 +47,16 @@ public class ConstructorRefTest {
         //找到有两个参数<String, Integer>的构造器
         BiFunction<String, Integer, Employee> biFunction1 = Employee::new;
         System.out.println(biFunction1.apply("jing", 18));
+    }
+
+    @Test
+    public void test4() {
+        Function<Integer, ArrayList> function = capacity -> new ArrayList(capacity);
+        System.out.println(function.apply(6));
+
+        //效果同上
+        Function<Integer, ArrayList> function1 = ArrayList::new;
+        System.out.println(function1.apply(7));
     }
 
 }
