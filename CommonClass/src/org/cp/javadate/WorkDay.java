@@ -23,7 +23,7 @@ public class WorkDay {
     private int initSort = 9;// 初始化 工作 序列号 jingjing
 //    private int initSort = 1;// 初始化 工作 序列号 lulu
 
-    private String target = "2019-10-29";// 目标日期
+    private String target = "2020-02-20";// 目标日期
 
     private int showNextDay = 120;//显示目标及接下来的7天的工作安排
 
@@ -34,6 +34,7 @@ public class WorkDay {
         specialDay.put(LocalDate.parse("2019-12-24"), "\uD83C\uDF4E");//苹果
         specialDay.put(LocalDate.parse("2019-12-25"), "\uD83C\uDF84");//圣诞树
         specialDay.put(LocalDate.parse("2020-01-01"), "\uD83E\uDD5A");//鸡蛋
+        specialDay.put(LocalDate.parse("2020-01-21"), "\uD83D\uDCAF");//100
         specialDay.put(LocalDate.parse("2020-01-24"), "\uD83C\uDF19");//月亮
         specialDay.put(LocalDate.parse("2020-01-25"), "☀");//太阳
         specialDay.put(LocalDate.parse("2020-02-14"), "❤");//爱心
