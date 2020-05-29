@@ -18,12 +18,12 @@ import java.util.Map;
  */
 public class WorkDay {
 
-    private String init = "2019-10-29";// 初始化日期
+    private String init = "2020-05-05";// 初始化日期
 
-    private int initSort = 9;// 初始化 工作 序列号 jingjing
+    private int initSort = 3;// 初始化 工作 序列号 jingjing
 //    private int initSort = 1;// 初始化 工作 序列号 lulu
 
-    private String target = "2020-02-20";// 目标日期
+    private String target = "2020-05-06";// 目标日期
 
     private int showNextDay = 120;//显示目标及接下来的7天的工作安排
 
